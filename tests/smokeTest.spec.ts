@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { promises as fs } from 'fs';
 
-test.describe.configure({timeout:60000});
+test.describe.configure({ timeout: 60000 });
 test.describe.serial('API Testing', () => {
 
     const baseURL = 'https://reqres.in/api'
@@ -11,15 +11,15 @@ test.describe.serial('API Testing', () => {
     const urlOPT = 'https://webhook.site/token/';
 
     let getOPTURL = '8c7f4ba8-56fc-4af0-a25c-fbb51a7717e4';
-    let email = "90057d02-fb2d-4e1a-a695-f1fb5a856ba3@email.webhook.site";
+    let email = "56e06b8a-ea0e-4f1a-9493-166d80d6a99d@email.webhook.site";
     let pwd = "Smash@123";
-   
+
 
     async function appendToFile(filePath: string, content: string): Promise<void> {
         await fs.appendFile(filePath, content);
     }
 
-    test('Create new user with OTP and email verification @reg', async ({ request, page, context }) => {
+    test('Create new user with OTP and email verification @smoke', async ({ request, page, context }) => {
 
 
 
@@ -58,7 +58,7 @@ test.describe.serial('API Testing', () => {
         await page.getByPlaceholder('Enter your email address').click();
         await page.getByPlaceholder('Enter your email address').fill(responseBody.uuid + '@email.webhook.site');
         email = responseBody.uuid + '@email.webhook.site';
-        console.log('email is = ' + email)        
+        console.log('email is = ' + email)
         await page.getByPlaceholder('Enter your email address').press('Tab');
         await page.getByPlaceholder('Enter a new password').fill('import { test, expect } from \'@playwright/test\';  test(\'test\', async ({ page }) => { });');
         await page.getByPlaceholder('Enter a new password').click();
@@ -131,11 +131,11 @@ test.describe.serial('API Testing', () => {
         await page.waitForTimeout(5000);
 
 
-        await expect.soft(page.locator(`//div[@class='MuiAlert-message css-1xsto0d']`)).toHaveText("Email Verified Successfully");
+        await expect.soft(page.getByText('Email Verified Successfully')).toHaveText("Email Verified Successfully");
         await page.waitForTimeout(5000);
         /////////////////writing email id to the text files/////////////////////////////
         const filePath = './pages/emailsIDs.txt';
-        const emailID = '\n'+ email;
+        const emailID = '\n' + email;
         await appendToFile(filePath, emailID);
         //////////////////////////////////////////////////////
         // await expect.soft(page.getByRole('heading', { name: 'Profile information' })).toHaveText("Profile information")
@@ -163,10 +163,10 @@ test.describe.serial('API Testing', () => {
 
     });
 
-    test('Login with verified user and complete profile preferences with all 7 steps', async ({ page }) => {        
+    test('Login with verified user and complete profile preferences with all 7 steps @smoke', async ({ page }) => {
         //await test.setTimeout(50000);
         await page.goto('https://next.gudppl.com');
-        //await page.waitForURL('**https://next.gudppl.com/');      
+        // await page.pause();
 
         await page.getByPlaceholder('Enter your email address').click();
         console.log('email from Login = ' + email)
@@ -175,6 +175,7 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('button', { name: 'Continue', exact: true }).click();
 
         //////////////////////////////////////////////////////////
+        // await page.getByRole('button', { name: 'Complete your profile now' }).click();
         await page.getByPlaceholder('Enter your first name').click();
         await page.getByPlaceholder('Enter your first name').fill('Monica');
         await page.getByPlaceholder('Enter your last name').click();
@@ -217,16 +218,29 @@ test.describe.serial('API Testing', () => {
         await page.getByLabel('Open').click();
         await page.getByPlaceholder('Select your country').fill('Sri');
         await page.getByRole('option', { name: 'Sri Lanka' }).click();
-        await page.locator('.css-rqmb9f').click();
-        await page.locator('#react-select-2-input').fill('Colombo');
-        await page.getByText('Colombo', { exact: true }).click({ timeout: 2000 });
+        //await page.locator('.css-rqmb9f').click();
+        //await page.locator('#react-select-2-input').fill('Colombo');
+        //await page.locator('.css-h14o9r-B').click();
+        //await page.locator('//div[@id='react-select-3-placeholder']//ancestor::div[1]//div[2]').click();        
+        // Using XPath selector
+        // const buttonXPath = "//div[@id='react-select-3-placeholder']//ancestor::div[1]//div[2]";
+        const dropDownXPath = "//label[normalize-space()='Country']/../..//div[2]//div//div//div//div[2]";
+        const dropDownElement = await page.locator(dropDownXPath);
+        await dropDownElement.click();        
+
+        const dropDownType = "//label[normalize-space()='Country']/../..//div[2]//div//div//div//div[2]//input";
+        const dropDownElementType = await page.locator(dropDownType);
+        await dropDownElementType.fill('Colombo');
+        
+        //await page.locator('#react-select-3-input').fill('Colombo');
+        await page.getByText('Colombo', { exact: true }).click({ timeout: 3000 });
         await page.getByPlaceholder('Write few sentences about you').click();
         await page.getByPlaceholder('Write few sentences about you').fill('Hi my name is Monica Geller');
         await page.getByRole('button', { name: 'Complete' }).click();
         await page.waitForTimeout(3500);
 
-        await page.getByText('Yay... you got the worm!').click();
-        await expect.soft(page.getByText('Yay... you got the worm!')).toHaveText("Yay... you got the worm!");
+        await expect.soft(page.getByRole('heading', { name: 'Welcome to Gudppl!' })).toHaveText("Welcome to Gudppl!");
+
         // await expect.soft(page.locator(`//div[@class='MuiAlert-message css-1xsto0d']`)).toHaveText("Profile Updated Successfully");
         //await expect.soft(page.locator(`//a[normalize-space()='help center']`)).toHaveText("help center");
         // await page.waitForTimeout(1500);
@@ -235,7 +249,12 @@ test.describe.serial('API Testing', () => {
 
     })
 
-   
+
+
+
+
+
+
 
 })
 
