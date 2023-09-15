@@ -49,6 +49,7 @@ test.describe.parallel('API Testing', () => {
     expect.soft(await page.getByPlaceholder('Let me type...')).toBeEmpty();
 
     //  await page.pause();
+    await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-638').toHaveText("Test case is failed");
   });
 
   test('Verify user able to enter valid email address on reset password field and continue.. - GUD-TC-264 @reg', async ({ request, page, context }) => {
@@ -97,92 +98,80 @@ test.describe.parallel('API Testing', () => {
     await page.getByPlaceholder('Enter your email address').fill('senuwan+22@smashtaps.com');
     await page.getByRole('button', { name: 'Continue' }).click();
     await expect.soft(page.getByText('Successfull'), 'This test case is failed due to - GUD-356').toHaveText("Something went wrong. Please try again");
-    
 
-   
+
+
 
   });
 
 
   test('Verify clicking on the Next button after selecting options in the Causes you care about screen.. - GUD-TC-50 and GUD-TC-48 @reg', async ({ request, page, context }) => {
 
-    await page.goto('https://next.gudppl.com');
-    await page.waitForTimeout(1500);
-    // await page.pause();
-    await page.getByPlaceholder('Enter your email address').click();
-    await page.getByPlaceholder('Enter your email address').fill('senuwan+1a2@smashtaps.com');
-    await page.getByPlaceholder('Enter your password').click();
-    await page.getByPlaceholder('Enter your password').fill('Test123@');
-    await page.getByRole('button', { name: 'Continue', exact: true }).click();
-    await page.waitForTimeout(1500);
-
-    await page.getByRole('button', { name: 'Complete your profile now' }).click();
-    // await page.getByPlaceholder('Enter your first name').click();
-    // await page.getByPlaceholder('Enter your first name').fill('LAL');
-    // await page.getByPlaceholder('Enter your last name').click();
-    // await page.getByPlaceholder('Enter your last name').fill('Perera');
-
-    // await page.getByPlaceholder('DD').click();
-    // await page.getByPlaceholder('DD').fill('1');
-    // await page.getByPlaceholder('MM').click();
-    // await page.getByPlaceholder('MM').fill('2');
-    // await page.getByPlaceholder('YYYY').click();
-    // await page.getByPlaceholder('YYYY').fill('2003');
-    await page.getByRole('button', { name: 'Next' }).click();
-    await page.waitForTimeout(2500);
-
-    await page.getByLabel('Animal welfare').check();
-    await page.getByLabel('Education').check();
-    await page.getByLabel('Environment').check();    
-    await page.getByRole('button', { name: 'Next' }).click();
-    await page.waitForTimeout(1500);
-
-    await page.getByRole('button', { name: 'Back' }).click();
-    await page.waitForTimeout(1500);
-
-    expect.soft(await page.getByLabel('Animal welfare').isEnabled()).toBeTruthy();
-    expect.soft(await page.getByLabel('Education').isEnabled()).toBeTruthy();
-    expect.soft(await page.getByLabel('Environment').isEnabled()).toBeTruthy();
-
-    await page.getByRole('button', { name: 'Back' }).click();
-    await page.waitForTimeout(1500);
-
-    await page.getByRole('button', { name: 'Next' }).click();
-    await page.waitForTimeout(1500);
-
-    expect.soft(await page.getByLabel('Animal welfare').isEnabled()).toBeTruthy();
-    expect.soft(await page.getByLabel('Education').isEnabled()).toBeTruthy();
-    expect.soft(await page.getByLabel('Environment').isEnabled()).toBeTruthy();
-
-    //verify select all functionality   
-    await page.getByRole('button', { name: 'Select all and proceed' }).click();
-    await page.getByRole('button', { name: 'Next' }).click();
-    await page.getByRole('button', { name: 'Back' }).click();
-
-    expect.soft(await page.getByLabel('Animal welfare').isEnabled()).toBeTruthy();
-    expect.soft(await page.getByLabel('Education').isEnabled()).toBeTruthy();
-    expect.soft(await page.getByLabel('Environment').isEnabled()).toBeTruthy();
-    expect.soft(await page.getByLabel('Disaster relief').isEnabled()).toBeTruthy();
-    expect.soft(await page.getByLabel('People').isEnabled()).toBeTruthy();
-
-    ///data remove
-    await page.getByLabel('Animal welfare').uncheck();
-    await page.getByLabel('Disaster relief').uncheck();
-    await page.getByLabel('Environment').uncheck();
-    await page.getByLabel('Education').uncheck();
-    await page.getByLabel('People').uncheck();
-    await page.getByRole('button', { name: 'Next' }).click();
-    await page.getByRole('button', { name: 'Back' }).click();
-    await page.waitForTimeout(1500);
-
-    expect.soft(await page.getByLabel('Animal welfare').isEnabled()).toBeFalsy();
-    expect.soft(await page.getByLabel('Education').isEnabled()).toBeFalsy();
-    expect.soft(await page.getByLabel('Environment').isEnabled()).toBeFalsy();
-    expect.soft(await page.getByLabel('Disaster relief').isEnabled()).toBeFalsy();
-    expect.soft(await page.getByLabel('People').isEnabled()).toBeTruthy();
-
-  
-
+    //This test case is failed due to bug ID - GUD-624 -- There by comment the test case till it fix.
+    /* await page.goto('https://next.gudppl.com');
+     await page.waitForTimeout(1500);
+     
+     await page.getByPlaceholder('Enter your email address').click();
+     await page.getByPlaceholder('Enter your email address').fill('senuwan+1a2@smashtaps.com');
+     await page.getByPlaceholder('Enter your password').click();
+     await page.getByPlaceholder('Enter your password').fill('Test123@');
+     await page.getByRole('button', { name: 'Continue', exact: true }).click();
+     await page.waitForTimeout(1500);
+ 
+     await page.getByRole('button', { name: 'Complete your profile now' }).click();
+     
+     await page.getByRole('button', { name: 'Next' }).click();
+     await page.waitForTimeout(2500);
+ 
+     await page.getByLabel('Animal welfare').check();
+     await page.getByLabel('Education').check();
+     await page.getByLabel('Environment').check();
+     await page.getByRole('button', { name: 'Next' }).click();
+     await page.waitForTimeout(1500);
+ 
+     await page.getByRole('button', { name: 'Back' }).click();
+     await page.waitForTimeout(1500);    
+     expect.soft(await page.getByLabel('Animal welfare').isEnabled()).toBeTruthy();
+     expect.soft(await page.getByLabel('Education').isEnabled()).toBeTruthy();
+     expect.soft(await page.getByLabel('Environment').isEnabled()).toBeTruthy();
+ 
+     await page.getByRole('button', { name: 'Back' }).click();
+     await page.waitForTimeout(1500);
+ 
+     await page.getByRole('button', { name: 'Next' }).click();
+     await page.waitForTimeout(1500);
+     expect.soft(await page.getByLabel('Animal welfare').isEnabled()).toBeTruthy();
+     expect.soft(await page.getByLabel('Education').isEnabled()).toBeTruthy();
+     expect.soft(await page.getByLabel('Environment').isEnabled()).toBeTruthy();
+ 
+     //verify select all functionality   
+     await page.getByRole('button', { name: 'Select all and proceed' }).click();
+     await page.getByRole('button', { name: 'Next' }).click();
+     await page.getByRole('button', { name: 'Back' }).click();
+     expect.soft(await page.locator("//div[contains(text(),'Animal welfare')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
+     expect.soft(await page.locator("//div[contains(text(),'Disaster relief')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
+     expect.soft(await page.locator("//div[contains(text(),'Environment')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
+     expect.soft(await page.locator("//div[contains(text(),'Education')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
+     expect.soft(await page.locator("//div[contains(text(),'People')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
+ 
+ 
+     ///data remove
+     await page.getByLabel('Animal welfare').uncheck();
+     await page.getByLabel('Disaster relief').uncheck();
+     await page.getByLabel('Environment').uncheck();
+     await page.getByLabel('Education').uncheck();
+     await page.getByLabel('People').uncheck();
+     await page.getByRole('button', { name: 'Next' }).click();
+     await page.getByRole('button', { name: 'Back' }).click();
+     await page.waitForTimeout(1500);    
+     expect.soft(await page.locator("//div[contains(text(),'Animal welfare')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
+     expect.soft(await page.locator("//div[contains(text(),'Disaster relief')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
+     expect.soft(await page.locator("//div[contains(text(),'Environment')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
+     expect.soft(await page.locator("//div[contains(text(),'Education')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
+     expect.soft(await page.locator("//div[contains(text(),'People')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
+     
+     */
+    await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-624').toHaveText("Due to this issue data are getting mismatch. Reconsider data of the user and Re run.");
 
   });
 
@@ -298,8 +287,8 @@ test.describe.parallel('API Testing', () => {
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    
-    
+
+
 
     await page.getByRole('button', { name: 'quality_education' }).click();
     await page.getByRole('button', { name: 'clean_water' }).click();
@@ -314,7 +303,7 @@ test.describe.parallel('API Testing', () => {
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-   
+
 
     await page.getByRole('button', { name: 'no_poverty' }).click();
     await page.getByRole('button', { name: 'decent_work' }).click();
@@ -338,7 +327,7 @@ test.describe.parallel('API Testing', () => {
 
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();        
+    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='reduced_inequalities']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='good_health']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
@@ -363,7 +352,7 @@ test.describe.parallel('API Testing', () => {
 
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();        
+    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='reduced_inequalities']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='good_health']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
     expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
@@ -377,14 +366,54 @@ test.describe.parallel('API Testing', () => {
     await page.getByRole('button', { name: 'iii' }).click();
     await page.getByRole('button', { name: 'Next' }).click();
     await page.waitForTimeout(2000);
-  
+
 
 
   });
 
 
 
+  test('Verify user able to upload an image..... - GUD-TC-9 , GUD-TC-197 @reg @smoke', async ({ request, page, context }) => {
 
+    await page.goto('https://next.gudppl.com');
+    await page.waitForTimeout(1500);
+    //await page.pause();
+
+    await page.getByPlaceholder('Enter your email address').click();
+    await page.getByPlaceholder('Enter your email address').fill('senuwan+1a5@smashtaps.com');
+    await page.getByPlaceholder('Enter your password').click();
+    await page.getByPlaceholder('Enter your password').fill('Test123@');
+    await page.getByRole('button', { name: 'Continue', exact: true }).click();
+    await page.waitForTimeout(1500);    
+    await page.getByRole('button', { name: 'Complete your profile now' }).click();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.waitForTimeout(1500);
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.waitForTimeout(1500);
+    await page.getByRole('button', { name: 'Next' }).click();    
+    await page.getByRole('row', { name: 'Sinhala delete' }).getByRole('checkbox').first().check();
+    await page.getByRole('row', { name: 'Tamil delete' }).getByRole('checkbox').first().check();
+    await page.getByRole('row', { name: 'English' }).getByRole('checkbox').first().check();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.waitForTimeout(1500);
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.waitForTimeout(1500);
+    await page.getByRole('button', { name: 'Upload picture' }).click();
+    await page.getByRole('img', { name: '/images/profilePictures/ambulance.png' }).click();
+    await expect.soft(page.getByText('Profile picture uploaded successfully')).toHaveText("Profile picture uploaded successfully");
+    await page.getByRole('button', { name: 'Upload picture' }).click();
+    await page.getByRole('img', { name: '/images/profilePictures/people.png' }).click();
+    await page.getByText('Profile picture uploaded successfully').click();
+    await expect.soft(page.getByText('Profile picture uploaded successfully')).toHaveText("Profile picture uploaded successfully");
+    await page.getByRole('button', { name: 'Upload picture' }).click();
+    await page.getByRole('button', { name: 'Upload from gallery' }).click();
+    await page.waitForTimeout(1000);
+    await page.locator("//input[@id='fileInput']").setInputFiles('pages/docs/image1.png');
+
+
+
+
+  });
 
 
 });

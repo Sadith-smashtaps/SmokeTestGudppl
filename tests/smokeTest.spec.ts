@@ -19,7 +19,7 @@ test.describe.serial('API Testing', () => {
         await fs.appendFile(filePath, content);
     }
 
-    test('Create new user with OTP and email verification @smoke', async ({ request, page, context }) => {
+    test('Create new user with OTP and email verification GUD-TC-78,GUD-TC-81  @smoke', async ({ request, page, context }) => {
 
 
 
@@ -163,7 +163,7 @@ test.describe.serial('API Testing', () => {
 
     });
 
-    test('Login with verified user and complete profile preferences with all 7 steps @smoke', async ({ page }) => {
+    test('Login with verified user and complete profile preferences with all 7 steps GUD-TC-13 @smoke', async ({ page }) => {
         //await test.setTimeout(50000);
         await page.goto('https://next.gudppl.com');
         // await page.pause();
