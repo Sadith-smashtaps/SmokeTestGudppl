@@ -124,7 +124,7 @@ test.describe.parallel('API Testing', () => {
 
     })
 
-    test('Verify selecting a day in the Availability to volunteer screen- GUD-TC-62 @reg', async ({ request, page, context }) => {
+    test('Verify selecting a day in the Availability to volunteer screen- GUD-TC-62 , GUD-TC-55 @reg', async ({ request, page, context }) => {
         
         await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-637').toHaveText("Test case is failed");
         /*

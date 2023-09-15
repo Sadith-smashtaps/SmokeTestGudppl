@@ -136,7 +136,7 @@ test.describe.parallel('API Testing', () => {
         let verifictioncodeStatus = utils.isVariableEmpty(verificationCode);
 
         if (await verifictioncodeStatus === true) {
-            await expect.soft(true,'Verification code 1 is empty').toBe(false);
+            await expect.soft(true, 'Verification code 1 is empty').toBe(false);
         } else {
             if (verificationCode !== verificationCode1) {
 
@@ -160,7 +160,7 @@ test.describe.parallel('API Testing', () => {
                 await page.waitForTimeout(5000);
 
             } else {
-                await expect.soft(verificationCode,'verification code 1 should not be equal to verification code 2').not.toBe(verificationCode1);
+                await expect.soft(verificationCode, 'verification code 1 should not be equal to verification code 2').not.toBe(verificationCode1);
                 console.log(`Verification Code 0001: = ${verificationCode}`);
                 console.log(`Resent Verification Code 0002: = ${verificationCode1}`);
             }
@@ -174,10 +174,338 @@ test.describe.parallel('API Testing', () => {
 
     });
 
+    test('Verify selecting multiple days in the Availability to volunteer screen - GUD-TC-68 , GUD-TC-74 @reg', async ({ request, page, context }) => {
 
-   
+        await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-637').toHaveText("Test case is failed");
+        /*
+        await page.goto('https://next.gudppl.com');
+        //await page.pause()       
+
+        await page.getByPlaceholder('Enter your email address').click();
+        await page.getByPlaceholder('Enter your email address').fill('senuwan+1a5@smashtaps.com');
+        await page.getByPlaceholder('Enter your password').click();
+        await page.getByPlaceholder('Enter your password').fill('Test123@');
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.waitForTimeout(1500);
+
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(1500);
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1500);
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1500);
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1500);
 
 
+        await page.getByLabel('Monday').check();
+        await page.getByLabel('Wednesday').check();
+        await page.getByLabel('Friday').check();
+        await page.getByLabel('Sunday').check();
+        await page.getByLabel('Saturday').check();
+        await page.getByLabel('Thursday').check();
+        await page.getByLabel('Tuesday').check();
+        await page.getByRole('button', { name: 'Next' }).click();
+        //await page.getByRole('alert').locator('div').filter({ hasText: 'You need to select a time of the day to proceed' }).click();
+        expect.soft(await page.getByText('You need to select a time of the day to proceed')).toHaveText("You need to select a time of the day to proceed");
+        await page.getByLabel('Sunday').uncheck();
+        await page.getByLabel('Saturday').uncheck();
+        await page.getByLabel('Friday').uncheck();
+        await page.getByLabel('Thursday').uncheck();
+        await page.getByLabel('Wednesday').uncheck();
+        await page.getByLabel('Tuesday').uncheck();
+        await page.getByLabel('Monday').uncheck();// No need to assert if the state of the check box does not change playwright return error
+        expect.soft(await page.getByLabel('Monday').isChecked()).toBeFalsy();
+        await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(2).check();
+        expect.soft(await page.getByLabel('Monday').isChecked()).toBeTruthy();
+        await page.getByRole('button', { name: 'Next' }).click();
+        //await page.getByText('Availability updated successfully').click();
+        expect.soft(await page.getByText('Availability updated successfully')).toHaveText("Availability updated successfully");
+        await page.getByRole('button', { name: 'Back' }).click();
+        expect.soft(await page.getByLabel('Monday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+
+        await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(1).check();
+        await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(3).check();
+        expect.soft(await page.getByLabel('Wednesday').isChecked()).toBeTruthy();
+        await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(1).check();
+        await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).check();
+        await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).check();
+        expect.soft(await page.getByLabel('Sunday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Saturday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Friday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Thursday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Tuesday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Monday').isChecked()).toBeTruthy();
+
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Back' }).click();
+        expect.soft(await page.getByLabel('Sunday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Saturday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Friday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Thursday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Tuesday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Monday').isChecked()).toBeTruthy();
+
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+
+
+        ///Data remove - this has to implement after that bug is resolved
+        await page.getByLabel('Monday').uncheck()
+        */
+
+
+    });
+
+    test('Verify the functionality of the remote volunteer toggle in the Availability to volunteer screen - GUD-TC-87 @reg', async ({ request, page, context }) => {
+
+        await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-637').toHaveText("Test case is failed");
+        /*
+         await page.goto('https://next.gudppl.com');
+         //await page.pause()       
+ 
+         await page.getByPlaceholder('Enter your email address').click();
+         await page.getByPlaceholder('Enter your email address').fill('senuwan+1a5@smashtaps.com');
+         await page.getByPlaceholder('Enter your password').click();
+         await page.getByPlaceholder('Enter your password').fill('Test123@');
+         await page.getByRole('button', { name: 'Continue', exact: true }).click();
+         await page.waitForTimeout(1500);
+ 
+         await page.getByRole('button', { name: 'Complete your profile now' }).click();
+         await page.waitForTimeout(1500);
+ 
+         await page.getByRole('button', { name: 'Next' }).click();
+         await page.waitForTimeout(1500);
+ 
+         await page.getByRole('button', { name: 'Next' }).click();
+         await page.waitForTimeout(1500);
+ 
+         await page.getByRole('button', { name: 'Next' }).click();
+         await page.waitForTimeout(1000);
+ 
+         await page.getByRole('button', { name: 'Next' }).click();
+         await page.waitForTimeout(1500);
+ 
+         expect.soft(await page.locator('.MuiSwitch-root > .MuiButtonBase-root > .PrivateSwitchBase-input').isChecked()).toBeTruthy();
+         await page.locator('.MuiSwitch-root > .MuiButtonBase-root > .PrivateSwitchBase-input').uncheck();
+         expect.soft(await page.locator('.MuiSwitch-root > .MuiButtonBase-root > .PrivateSwitchBase-input').isChecked()).toBeFalsy();
+         await page.getByLabel('Friday').check();
+         await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).check();
+         await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(3).check();
+         await page.getByRole('button', { name: 'Next' }).click();
+         await page.getByText('Availability updated successfully').click();
+         expect.soft(await page.getByText('Availability updated successfully')).toHaveText("Availability updated successfully");
+         await page.getByRole('button', { name: 'Back' }).click();
+         expect.soft(await page.locator('.MuiSwitch-root > .MuiButtonBase-root > .PrivateSwitchBase-input').isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+         expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+         expect.soft(await page.getByLabel('Wednesday').isChecked()).toBeTruthy();
+         expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+         expect.soft(await page.getByLabel('Friday').isChecked()).toBeTruthy();
+ 
+ 
+         await page.locator('.MuiSwitch-root > .MuiButtonBase-root > .PrivateSwitchBase-input').check();
+         expect.soft(await page.locator('.MuiSwitch-root > .MuiButtonBase-root > .PrivateSwitchBase-input').isChecked()).toBeTruthy();
+ 
+ 
+         await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).uncheck();
+         expect.soft(await page.getByLabel('Friday').isChecked()).toBeFalsy();
+         await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(1).check();
+         expect.soft(await page.getByLabel('Sunday').isChecked()).toBeTruthy();
+         await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(1).check();
+         expect.soft(await page.getByLabel('Wednesday').isChecked()).toBeTruthy();
+         await page.getByRole('button', { name: 'Next' }).click();
+         await page.getByText('Availability updated successfully').click();
+         await page.getByRole('button', { name: 'Back' }).click();
+         expect.soft(await page.locator('.MuiSwitch-root > .MuiButtonBase-root > .PrivateSwitchBase-input').isChecked()).toBeTruthy();
+         expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+         expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+         expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+         expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+         expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+         expect.soft(await page.getByLabel('Sunday').isChecked()).toBeTruthy();
+         expect.soft(await page.getByLabel('Wednesday').isChecked()).toBeTruthy();
+         expect.soft(await page.getByLabel('Friday').isChecked()).toBeFalsy();
+         expect.soft(await page.getByLabel('Monday').isChecked()).toBeFalsy();
+ 
+ 
+ 
+         ///Data remove - this has to implement after that bug is resolved
+         //await page.getByLabel('Monday').uncheck()
+ 
+        */
+
+    });
+
+    test('Verify unselecting slots in the Availability to volunteer screen - GUD-TC-86 @reg', async ({ request, page, context }) => {
+
+        await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-637').toHaveText("Test case is failed");
+        /*
+        await page.goto('https://next.gudppl.com');
+        //await page.pause()       
+
+        await page.getByPlaceholder('Enter your email address').click();
+        await page.getByPlaceholder('Enter your email address').fill('senuwan+1a5@smashtaps.com');
+        await page.getByPlaceholder('Enter your password').click();
+        await page.getByPlaceholder('Enter your password').fill('Test123@');
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.waitForTimeout(1500);
+
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(1500);
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1500);
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1500);
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1500);
+
+
+        await page.getByLabel('Friday').check();
+        await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(1).check();
+        await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).check();        
+        await page.getByRole('button', { name: 'Next' }).click();
+        expect.soft(await page.getByText('Availability updated successfully')).toHaveText("Availability updated successfully");
+        await page.getByRole('button', { name: 'Back' }).click();
+
+        
+        await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(1).uncheck();
+        await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).uncheck();
+        await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).uncheck();
+        await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(2).check();
+
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Friday').isChecked()).toBeFalsy();
+        await page.getByRole('button', { name: 'Next' }).click();
+        expect.soft(await page.getByText('Availability updated successfully')).toHaveText("Availability updated successfully");
+        await page.getByRole('button', { name: 'Back' }).click();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Friday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('Thursday').isChecked()).toBeTruthy();
+
+
+        await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).check();
+        await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(1).check();
+        await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(3).check();
+        await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(3).check();
+        await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(1).check();
+        await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(2).check();
+        
+        
+        await page.getByRole('button', { name: 'Next' }).click();
+        expect.soft(await page.getByText('Availability updated successfully')).toHaveText("Availability updated successfully");
+        await page.getByRole('button', { name: 'Back' }).click();
+
+        await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).uncheck();
+        await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(1).uncheck();
+        await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(3).check();
+        await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(1).check();
+        await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(2).uncheck();                
+        await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(2).uncheck();        
+        await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(2).uncheck();
+        await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(1).check();
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        expect.soft(await page.getByText('Availability updated successfully')).toHaveText("Availability updated successfully");
+        await page.getByRole('button', { name: 'Back' }).click();
+
+
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+
+        expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+        
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        
+
+        expect.soft(await page.getByLabel('Monday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('Tuesday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Wednesday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Thursday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Friday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('Saturday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('Sunday').isChecked()).toBeTruthy();
+       
+
+        ///Data remove - this has to implement after that bug is resolved
+        //await page.getByLabel('Monday').uncheck()
+
+        */
+
+    });
 
 })
 
