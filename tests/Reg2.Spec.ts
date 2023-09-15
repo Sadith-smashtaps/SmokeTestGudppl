@@ -54,6 +54,8 @@ test.describe.parallel('API Testing', () => {
         expect.soft(await page.getByText('Invalid email address')).toHaveText("Invalid email address");
 
         await page.getByPlaceholder('Enter your email address').click();
+        await page.waitForTimeout(2000);
+        await page.getByPlaceholder('Enter your email address').fill('');
         await page.getByPlaceholder('Enter your email address').fill('waruni+3@smashtaps.com');
         await page.getByPlaceholder('Enter your password').click();
         await page.getByPlaceholder('Enter your password').fill('User@123');
@@ -61,10 +63,7 @@ test.describe.parallel('API Testing', () => {
         //await page.getByText('Welcome', { exact: true }).click();
         expect.soft(await page.getByText('Welcome', { exact: true })).toHaveText("Welcome ");
 
-
-
-
-        await page.waitForTimeout(1500);
+        await page.waitForTimeout(4000);
 
 
 
