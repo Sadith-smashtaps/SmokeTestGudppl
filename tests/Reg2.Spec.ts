@@ -54,7 +54,7 @@ test.describe.parallel('API Testing', () => {
         expect.soft(await page.getByText('Invalid email address')).toHaveText("Invalid email address");
 
         await page.getByPlaceholder('Enter your email address').click();
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(2001);
         await page.getByPlaceholder('Enter your email address').fill('');
         await page.getByPlaceholder('Enter your email address').fill('waruni+3@smashtaps.com');
         await page.getByPlaceholder('Enter your password').click();
