@@ -238,7 +238,7 @@ test.describe.parallel('API Testing', () => {
 
 
 
-  test('Verify user able to view his selection when navigate back and come back to the screen..... - GUD-TC-33 @reg', async ({ request, page, context }) => {
+  test('Verify user able to view his selection when navigate back and come back to the screen..... - GUD-TC-33 @reg @smoke', async ({ request, page, context }) => {
 
     await page.goto('https://next.gudppl.com');
     await page.waitForTimeout(1500);
@@ -373,7 +373,7 @@ test.describe.parallel('API Testing', () => {
 
 
 
-  test('Verify user able to upload an image..... - GUD-TC-9 , GUD-TC-197 @reg @smoke', async ({ request, page, context }) => {
+  test('Verify user able to upload an image..... - GUD-TC-9 , GUD-TC-197 @reg ', async ({ request, page, context }) => {
 
     await page.goto('https://next.gudppl.com');
     await page.waitForTimeout(1500);

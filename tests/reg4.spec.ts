@@ -507,5 +507,479 @@ test.describe.parallel('API Testing', () => {
 
     });
 
+    test('Verify user can add a skill GUD-TC-106 , GUD-TC-109 , GUD-TC-288 @reg', async ({ request, page, context }) => {
+
+
+        await page.goto('https://next.gudppl.com');
+        //await page.pause()       
+
+        await page.getByPlaceholder('Enter your email address').click();
+        await page.getByPlaceholder('Enter your email address').fill('senuwan+1a5@smashtaps.com');
+        await page.getByPlaceholder('Enter your password').click();
+        await page.getByPlaceholder('Enter your password').fill('Test123@');
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+
+        await page.getByPlaceholder('Add skills and talents').fill('account');
+        await page.getByRole('option', { name: 'Accounting' }).click();
+        await page.getByPlaceholder('Add skills and talents').fill('Babysitting');
+        await page.getByRole('option', { name: 'Babysitting' }).click();
+        await page.getByPlaceholder('Add skills and talents').fill('Arts and crafts');
+        await page.getByRole('option', { name: 'Arts and crafts' }).click();
+        await page.getByPlaceholder('Add skills and talents').fill('Dancing');
+        await page.getByRole('option', { name: 'Dancing' }).click();
+
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[2]//*[name()='svg']").click();
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[2]//*[name()='svg']").click();
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[2]//*[name()='svg']").click();
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[1]//*[name()='svg']").click();
+
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Arts and crafts']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Dancing']").isVisible()).toBeFalsy();
+
+
+        await page.getByPlaceholder('Add skills and talents').fill('account');
+        await page.getByRole('option', { name: 'Accounting' }).click();
+        await page.getByPlaceholder('Add skills and talents').fill('Babysitting');
+        await page.getByRole('option', { name: 'Babysitting' }).click();
+        await page.getByPlaceholder('Add skills and talents').fill('Arts and crafts');
+        await page.getByRole('option', { name: 'Arts and crafts' }).click();
+        await page.getByPlaceholder('Add skills and talents').fill('Dancing');
+        await page.getByRole('option', { name: 'Dancing' }).click();
+        await page.getByPlaceholder('Add skills and talents').fill('Knitting and crocheting');
+        await page.getByRole('option', { name: 'Knitting and crocheting' }).click();
+
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeTruthy()
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeTruthy()
+        expect.soft(await page.locator("//span[normalize-space()='Arts and crafts']").isVisible()).toBeTruthy()
+        expect.soft(await page.locator("//span[normalize-space()='Dancing']").isVisible()).toBeTruthy()
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Back' }).click();
+
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeTruthy()
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeTruthy()
+        expect.soft(await page.locator("//span[normalize-space()='Arts and crafts']").isVisible()).toBeTruthy()
+        expect.soft(await page.locator("//span[normalize-space()='Dancing']").isVisible()).toBeTruthy()
+
+
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[2]//*[name()='svg']").click();
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[2]//*[name()='svg']").click();
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[2]//*[name()='svg']").click();
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[1]//*[name()='svg']").click();
+        await page.waitForTimeout(1500);
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Arts and crafts']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Dancing']").isVisible()).toBeFalsy();
+
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Back' }).click();
+        await page.waitForTimeout(2000);
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Arts and crafts']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Dancing']").isVisible()).toBeFalsy();
+
+
+
+        // expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+
+
+
+        ///Data remove - this has to implement after that bug is resolved
+        //await page.getByLabel('Monday').uncheck()
+
+
+    });
+
+    test('Verify user clicks on the Skip I ll do it later button GUD-TC-150 @reg', async ({ request, page, context }) => {
+
+
+        await page.goto('https://next.gudppl.com');
+        //await page.pause()       
+
+        await page.getByPlaceholder('Enter your email address').click();
+        await page.getByPlaceholder('Enter your email address').fill('senuwan+1a5@smashtaps.com');
+        await page.getByPlaceholder('Enter your password').click();
+        await page.getByPlaceholder('Enter your password').fill('Test123@');
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+
+        await page.getByPlaceholder('Add skills and talents').fill('account');
+        await page.getByRole('option', { name: 'Accounting' }).click();
+        await page.getByPlaceholder('Add skills and talents').fill('Babysitting');
+        await page.getByRole('option', { name: 'Babysitting' }).click();
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Back' }).click();
+
+
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeTruthy();
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeTruthy();
+
+        await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeTruthy();
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeTruthy();
+
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[2]//*[name()='svg']").click();
+        await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[1]//*[name()='svg']").click();
+        await page.waitForTimeout(1500);
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeFalsy();
+
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Back' }).click();
+
+        await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+
+
+
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeFalsy();
+
+        await page.getByPlaceholder('Add skills and talents').fill('account');
+        await page.getByRole('option', { name: 'Accounting' }).click();
+        await page.getByPlaceholder('Add skills and talents').fill('Babysitting');
+        await page.getByRole('option', { name: 'Babysitting' }).click();
+
+        await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+
+
+
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Babysitting']").isVisible()).toBeFalsy();
+
+
+
+        ///Data remove - this has to implement after that bug is resolved
+        //await page.getByLabel('Monday').uncheck()
+
+
+    });
+
+    test('Verify the add language pop up button functionalities GUD-TC-146, GUD-TC-112 @reg', async ({ request, page, context }) => {
+
+
+        await page.goto('https://next.gudppl.com');
+
+        await page.getByPlaceholder('Enter your email address').click();
+        await page.getByPlaceholder('Enter your email address').fill('senuwan+1a5@smashtaps.com');
+        await page.getByPlaceholder('Enter your password').click();
+        await page.getByPlaceholder('Enter your password').fill('Test123@');
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+
+
+        await page.getByText('Add language').click();
+        await page.getByRole('button', { name: 'close' }).click();
+        await page.getByText('Add language').click();
+        //await page.locator('.css-1hi79y2 > div:nth-child(3)').click();// need to check button is disable or not
+        await page.getByPlaceholder('Enter language name').click();
+        await page.getByPlaceholder('Enter language name').fill('Chinese, Wu');
+        await page.waitForTimeout(1000);
+        await page.getByRole('option', { name: 'Chinese, Wu' }).click();
+        await page.getByRole('button', { name: 'Add' }).click();
+
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().check();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Back' }).click();
+        //verificatoin
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).isVisible()).toBeTruthy();
+
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).click();
+        //verification
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).isVisible()).toBeFalsy();
+        await page.getByText('Add language').click();
+        await page.getByPlaceholder('Enter language name').click();
+        await page.getByPlaceholder('Enter language name').fill('Chinese, Wu');
+        await page.waitForTimeout(1000);
+        await page.getByRole('option', { name: 'Chinese, Wu' }).click();
+        await page.getByRole('button', { name: 'Add' }).click();
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).click();
+        //verification
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).isVisible()).toBeFalsy();
+        await page.getByText('Add language').click();
+        await page.getByPlaceholder('Enter language name').click();
+        await page.getByPlaceholder('Enter language name').fill('Chinese, Wu');
+        await page.waitForTimeout(1000);
+        await page.getByRole('option', { name: 'Chinese, Wu' }).click();
+        await page.getByRole('button', { name: 'Add' }).click();
+        //verification
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).isVisible()).toBeTruthy();
+        await page.getByRole('button', { name: 'Next' }).click();
+        // validation message            
+        expect.soft(await page.getByText('Please add your fluency areas.')).toHaveText("Please add your fluency areas.");
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Back' }).click();
+        await page.waitForTimeout(1000);
+        //verification
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).isVisible()).toBeTruthy();
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Back' }).click();
+        await page.waitForTimeout(1000);
+        //verification
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).isVisible()).toBeFalsy();
+
+
+
+
+
+
+
+    });
+
+    test('Verify the check box behaviour when user select the All check box GUD-TC-137, GUD-TC-147 @reg', async ({ request, page, context }) => {
+        await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-397').toHaveText("Test case is failed");
+        /*
+        await page.goto('https://next.gudppl.com');
+
+        await page.getByPlaceholder('Enter your email address').click();
+        await page.getByPlaceholder('Enter your email address').fill('senuwan+1a5@smashtaps.com');
+        await page.getByPlaceholder('Enter your password').click();
+        await page.getByPlaceholder('Enter your password').fill('Test123@');
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(1000);
+        
+        await page.getByText('Add language').click();
+        //await page.locator('.css-1hi79y2 > div:nth-child(3)').click();// need to check button is disable or not
+        await page.getByPlaceholder('Enter language name').click();
+        await page.getByPlaceholder('Enter language name').fill('Chinese, Wu');
+        await page.waitForTimeout(1000);
+        await page.getByRole('option', { name: 'Chinese, Wu' }).click();
+        await page.getByRole('button', { name: 'Add' }).click();
+
+
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().check();
+        //verify all and other checkboxes
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(4).isChecked()).toBeTruthy();
+
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().uncheck();
+        //verify all and other checkboxes
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(4).isChecked()).toBeFalsy();
+
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().check();
+        //verify all and other checkboxes
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(4).isChecked()).toBeTruthy();
+
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(1).uncheck();
+        //verify all and other checkboxes
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(4).isChecked()).toBeTruthy();
+
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).uncheck();
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(3).uncheck();
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(4).uncheck();
+        //verify all and other checkboxes
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(4).isChecked()).toBeFalsy();
+
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(1).check();
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(3).check();
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(4).check();
+        //verify all and other checkboxes
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(4).isChecked()).toBeTruthy();
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Back' }).click();
+        //verify all and other checkboxes
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').first().isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('checkbox').nth(4).isChecked()).toBeTruthy();
+
+        await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+
+        await page.getByRole('button', { name: 'Back' }).click();
+        await page.waitForTimeout(1000);
+        //verification
+        expect.soft(await page.getByRole('row', { name: 'Chinese, Wu delete' }).getByRole('button', { name: 'delete' }).isVisible()).toBeFalsy();
+        */
+
+    });
+
+    test('Verify the behaviour of the left navigation panel when the minimum criteria not met but user clicks on next button GUD-TC-178 GUD-TC-182 @reg @smoke', async ({ request, page, context }) => {
+
+        await page.goto('https://next.gudppl.com');
+
+        await page.getByPlaceholder('Enter your email address').click();
+        await page.getByPlaceholder('Enter your email address').fill('krishan+38@smashtaps.com');
+        await page.getByPlaceholder('Enter your password').click();
+        await page.getByPlaceholder('Enter your password').fill('Smash@123');
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Complete' }).click();
+        await page.waitForTimeout(700);
+        expect.soft(await page.locator("//span[normalize-space()='Profile Information']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeTruthy();
+        expect.soft(await page.locator("//span[normalize-space()='Causes you care about']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='United Nations Sustainable Development Goals']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Your skills & talents']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Availability to volunteer']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Complete your profile']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
+        await page.waitForTimeout(700);
+        //verify
+        expect.soft(await page.locator("//span[normalize-space()='Profile Information']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeTruthy();
+        expect.soft(await page.locator("//span[normalize-space()='Causes you care about']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='United Nations Sustainable Development Goals']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Your skills & talents']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Availability to volunteer']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Complete your profile']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
+        await page.waitForTimeout(700);
+        //verify
+        expect.soft(await page.locator("//span[normalize-space()='Profile Information']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeTruthy();
+        expect.soft(await page.locator("//span[normalize-space()='Causes you care about']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='United Nations Sustainable Development Goals']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Your skills & talents']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Availability to volunteer']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Complete your profile']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
+        await page.waitForTimeout(700);
+        //verify
+        expect.soft(await page.locator("//span[normalize-space()='Profile Information']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeTruthy();
+        expect.soft(await page.locator("//span[normalize-space()='Causes you care about']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='United Nations Sustainable Development Goals']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Your skills & talents']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Availability to volunteer']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Complete your profile']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        await page.getByRole('button', { name: 'Complete your profile now' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(700);
+        await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
+        await page.waitForTimeout(700);
+        //verify
+        expect.soft(await page.locator("//span[normalize-space()='Profile Information']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeTruthy();
+        expect.soft(await page.locator("//span[normalize-space()='Causes you care about']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='United Nations Sustainable Development Goals']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Your skills & talents']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Availability to volunteer']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Complete your profile']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        
+
+
+    });
+
+
+
 })
 
