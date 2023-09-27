@@ -889,7 +889,7 @@ test.describe.parallel('API Testing', () => {
 
     });
 
-    test('Verify the behaviour of the left navigation panel when the minimum criteria not met but user clicks on next button GUD-TC-178 GUD-TC-182 @reg @smoke', async ({ request, page, context }) => {
+    test('Verify the behaviour of the left navigation panel when the minimum criteria not met but user clicks on next button GUD-TC-178 GUD-TC-182 GUD-TC-309 @reg', async ({ request, page, context }) => {
 
         await page.goto('https://next.gudppl.com');
 
@@ -973,9 +973,35 @@ test.describe.parallel('API Testing', () => {
         expect.soft(await page.locator("//span[normalize-space()='United Nations Sustainable Development Goals']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
         expect.soft(await page.locator("//span[normalize-space()='Your skills & talents']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
         expect.soft(await page.locator("//span[normalize-space()='Availability to volunteer']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
-        expect.soft(await page.locator("//span[normalize-space()='Complete your profile']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Complete your profile']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();                        
         
+        const progressStatus = await page.locator("//h3[contains(text(),'You are a few steps away from completing your prof')]/../div/div[2]/span").textContent();        
+        await expect.soft(progressStatus).toBe("1/6 Completed");
 
+
+    });
+
+    test('Verify navigation page when all preference set up areas are completed GUD-TC-308 @reg @smoke', async ({ request, page, context }) => {
+
+        await page.goto('https://next.gudppl.com');
+
+        await page.getByPlaceholder('Enter your email address').click();
+        await page.getByPlaceholder('Enter your email address').fill('45ba62a1-619a-4d80-88ff-a73c2067c0a4@email.webhook.site');
+        await page.getByPlaceholder('Enter your password').click();
+        await page.getByPlaceholder('Enter your password').fill('Smash@123');
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.waitForTimeout(5000);
+
+        expect.soft(await page.locator("//span[normalize-space()='Profile Information']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Causes you care about']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='United Nations Sustainable Development Goals']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Your skills & talents']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Availability to volunteer']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//span[normalize-space()='Complete your profile']/../../div//*[name()='svg' and contains(@data-testid,'CheckCircleOutlineOutlinedIcon')]").isVisible()).toBeFalsy();
+        expect.soft(await page.locator("//h3[contains(text(),'You are a few steps away from completing your prof')]/../div/div[2]/span").isVisible()).toBeFalsy();
+                
+
+        
 
     });
 

@@ -166,7 +166,7 @@ test.describe.serial('API Testing', () => {
     test('Login with verified user and complete profile preferences with all 7 steps GUD-TC-13 @smoke', async ({ page }) => {
         //await test.setTimeout(50000);
         await page.goto('https://next.gudppl.com');
-        // await page.pause();
+        // await page.pause();        
 
         await page.getByPlaceholder('Enter your email address').click();
         console.log('email from Login = ' + email)
@@ -226,12 +226,12 @@ test.describe.serial('API Testing', () => {
         // const buttonXPath = "//div[@id='react-select-3-placeholder']//ancestor::div[1]//div[2]";
         const dropDownXPath = "//label[normalize-space()='Country']/../..//div[2]//div//div//div//div[2]";
         const dropDownElement = await page.locator(dropDownXPath);
-        await dropDownElement.click();        
+        await dropDownElement.click();
 
         const dropDownType = "//label[normalize-space()='Country']/../..//div[2]//div//div//div//div[2]//input";
         const dropDownElementType = await page.locator(dropDownType);
         await dropDownElementType.fill('Colombo');
-        
+
         //await page.locator('#react-select-3-input').fill('Colombo');
         await page.getByText('Colombo', { exact: true }).click({ timeout: 3000 });
         await page.getByPlaceholder('Write few sentences about you').click();
@@ -248,12 +248,83 @@ test.describe.serial('API Testing', () => {
 
 
     })
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    test('Create organization @reg @smoke', async ({ page }) => {
+        
+        await page.goto('https://next.gudppl.com');
+       // await page.pause();
+
+        await page.getByPlaceholder('Enter your email address').click();
+        console.log('email ID Login for third test case is = ' + email)
+        await page.getByPlaceholder('Enter your email address').fill(email);
+        await page.getByPlaceholder('Enter your password').fill(pwd);
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+
+        // await page.getByPlaceholder('Enter your email address').click();
+        // await page.getByPlaceholder('Enter your email address').fill("45ba62a1-619a-4d80-88ff-a73c2067c0a4@email.webhook.site");
+        // await page.getByPlaceholder('Enter your password').fill("Smash@123");
+        // await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.waitForTimeout(1000);
+
+        const randomNumber = getRandomNumber(1, 100588);
+        console.log(randomNumber);
+
+        await page.getByRole('button', { name: 'Organizations' }).click();
+        await page.getByRole('button', { name: 'Create an organization' }).click();
+        await page.getByPlaceholder('Enter organization name').click();
+        await page.getByPlaceholder('Enter organization name').fill('Org1' + randomNumber);
+        await page.getByLabel('BusinessSmall/medium business, company, or multi-national company').check();
+        await page.getByLabel('Yes').check();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(500);
+        await page.getByPlaceholder('Who we are and the positive impact we wish to make in the community').click();
+        await page.getByPlaceholder('Who we are and the positive impact we wish to make in the community').fill('This is created by automation');
+        await page.getByPlaceholder('Your phone number').click();
+        await page.getByPlaceholder('Your phone number').fill('774444444');
+        await page.getByRole('button', { name: 'Open' }).click();
+        await page.getByPlaceholder('Select your country').fill('Sri lanka');
+        await page.getByRole('option', { name: 'Sri Lanka' }).click();
+        await page.waitForTimeout(500);
+        //await page.locator('.css-h14o9r-B').click();
+        await page.locator("//span[normalize-space()='Location *']/../div/div[2]//div//div//div//div[2]").click();
+        await page.locator("//span[normalize-space()='Location *']/../div/div[2]//div//div//div//div[2]//input").fill('Dehiwala');
+        await page.waitForTimeout(500);
+        await page.getByText('Dehiwala-Mount Lavinia', { exact: true }).click();
+        await page.getByText('Animal welfare').click();
+        await page.getByText('Education').click();
+        await page.getByText('People').click();
+        await page.getByRole('button', { name: 'No Poverty' }).click();
+        await page.getByRole('button', { name: 'Clean Water and Sanitation' }).click();
+        await page.getByRole('button', { name: 'Sustainable Cities and Communities' }).click();
+        await page.getByRole('button', { name: 'Peace, Justice and Strong Institutions' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();        
+        await page.getByLabel('51-100').check();
+        await page.locator('input[name="website"]').click();
+        await page.locator('input[name="website"]').fill('https://www.rugbyworldcup.com/2023');
+        await page.locator('input[name="profileInformation"]').click();
+        await page.locator('input[name="profileInformation"]').fill('https://www.espncricinfo.com/');
+        await page.getByLabel('I verify that I am an authorized representative of this organization and have the right to act on its behalf in the creation and management of this profile. The organization and I agree to gudppl\'s term and conditions.').check();
+        await page.getByRole('button', { name: 'Complete' }).click();
+        await page.waitForTimeout(500);        
+        await page.getByRole('button', { name: 'Got it' }).click();
+        await page.locator('#textClippingContainer').getByText('This is created by automation').click();
+        await page.getByText('+94774444444').click();
+        await page.locator('.MuiBox-root > div:nth-child(2) > div > div > .MuiBox-root').first().click();
+        await page.locator('div:nth-child(2) > div > div:nth-child(2) > .MuiBox-root').first().click();
+        await page.locator('.MuiBox-root > div > div:nth-child(3) > .MuiBox-root').click();
+        await page.getByRole('button', { name: 'No Poverty' }).click();
+        await page.getByRole('button', { name: 'Clean Water and Sanitation' }).click();
+        await page.getByRole('button', { name: 'Sustainable Cities and Communities' }).click();
+        await page.getByRole('button', { name: 'Peace, Justice and Strong Institutions' }).click();
 
 
 
 
 
-
+    })
 
 
 })
