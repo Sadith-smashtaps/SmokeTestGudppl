@@ -604,7 +604,7 @@ test.describe.parallel('API Testing', () => {
 
     });
 
-    test('Verify user clicks on the Skip I ll do it later button GUD-TC-150 @reg', async ({ request, page, context }) => {
+    test('Verify user clicks on the Skip I ll do it later button GUD-TC-150 @reg @smoke', async ({ request, page, context }) => {
 
 
         await page.goto('https://next.gudppl.com');
@@ -981,7 +981,7 @@ test.describe.parallel('API Testing', () => {
 
     });
 
-    test('Verify navigation page when all preference set up areas are completed GUD-TC-308 @reg @smoke', async ({ request, page, context }) => {
+    test('Verify navigation page when all preference set up areas are completed GUD-TC-308 @reg ', async ({ request, page, context }) => {
 
         await page.goto('https://next.gudppl.com');
 

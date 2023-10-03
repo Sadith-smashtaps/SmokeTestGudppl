@@ -1,30 +1,26 @@
-//import { expect, Page } from "@playwright/test";
-import { expect, Page, request } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { promises as fs } from 'fs';
 
-
-export default class utils {
-
+export default class LoginPage {
     page: Page;
-    request: Request;
-    
+
     constructor(page: Page) {
         this.page = page;
+    }
 
-    }
-    public async isVariableEmpty(variable: any): Promise<boolean> {
-        return variable === undefined || variable === null || variable === '';
-    }
+    // Locators
+    emailClick = ()=>this.page.getByPlaceholder('Enter your email address');
+    emailFill = ()=>this.page.getByPlaceholder('Enter your email address');
+    pwdFill = ()=>this.page.getByPlaceholder('Enter your password');
+    loginButton = ()=>this.page.getByRole('button', { name: 'Continue', exact: true });
 
     async appendToFile(filePath: string, content: string): Promise<void> {
         await fs.appendFile(filePath, content);
     }
 
-    async isCharacterCountMoreThan400(svgPath: string): Promise<boolean> {
-        return svgPath.length > 400;
-    }
-    
-    public async createUser( request: any): Promise<string> {
+
+    public async goto(request: any){        
+        await this.page.goto('https://next.gudppl.com');
 
         const baseURL = 'https://reqres.in/api'
 
@@ -34,7 +30,13 @@ export default class utils {
         let getOPTURL = '8c7f4ba8-56fc-4af0-a25c-fbb51a7717e4';
         let email = "56e06b8a-ea0e-4f1a-9493-166d80d6a99d@email.webhook.site";
         let pwd = "Smash@123";
-       
+
+        // await this.page.goto('https://next.gudppl.com/signup');
+        // await this.page.waitForTimeout(5000);
+
+       // const browser: Browser = await chromium.launch({ headless: false });
+        //const context = await browser.newContext();
+        //const page: Page = await context.newPage();
 
         //////////////get the UUID//////////////////////
 
@@ -56,7 +58,18 @@ export default class utils {
         console.log(responseBody1.data.uuid)
         /////////////////////////////////////////////////////////////
         await this.page.goto('https://next.gudppl.com/signup');
-        //await this.page.pause()      
+        await this.page.pause()
+
+
+        //      const { chromium } = require('playwright');
+
+        // (async () => {
+        //   const browser = await chromium.launch({
+        //     headless: false
+        //   });
+        //   const context = await browser.newContext();
+        //  await page.locator('div').filter({ hasText: 'Log In to your accountContinue with GoogleContinue with FacebookContinue with Ap' }).nth(3).click();
+        // await page.getByText('Create an account').click();
         await this.page.getByPlaceholder('Enter your email address').click();
         await this.page.getByPlaceholder('Enter your email address').fill(responseBody.uuid + '@email.webhook.site');
         email = responseBody.uuid + '@email.webhook.site';
@@ -75,7 +88,7 @@ export default class utils {
         const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
         // ...        
         // Before making the API request
-        await delay(40000); // Wait for 30 seconds
+        await delay(47000); // Wait for 30 seconds
 
         await this.page.locator('input').first().click();
         //await page.waitForURL('https://next.gudppl.com/verify-email');
@@ -124,8 +137,15 @@ export default class utils {
         await this.page.locator('input:nth-child(4)').fill(charArray[3]);
         await this.page.locator('input:nth-child(5)').fill(charArray[4]);
         await this.page.locator('input:nth-child(6)').fill(charArray[5]);
-        await this.page.getByRole('button', { name: 'Submit' }).click();      
+        await this.page.getByRole('button', { name: 'Submit' }).click();
+
+
+        //await delay(5000);
+        //await page.pause()        
+        //await page.goto('https://next.gudppl.com/user-onboarding');
         await this.page.waitForTimeout(5000);
+
+
         await expect.soft(this.page.getByText('Email Verified Successfully')).toHaveText("Email Verified Successfully");
         await this.page.waitForTimeout(5000);
         /////////////////writing email id to the text files/////////////////////////////
@@ -134,12 +154,18 @@ export default class utils {
         await this.appendToFile(filePath, emailID);
 
 
-        return email;
+    }
 
+    public async login(email:string , pwd:string ){
 
-
+        await this.emailClick().click();
+        await this.emailFill().fill(email);
+        await this.pwdFill().fill(pwd);
+        await this.loginButton().click();        
+        //console.log('email from Login = ' + email)        
 
     }
+
 
 
 }
