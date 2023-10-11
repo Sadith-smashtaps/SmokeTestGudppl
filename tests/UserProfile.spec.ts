@@ -91,7 +91,7 @@ test.describe.parallel('API Testing', async () => {
         await page.getByRole('button', { name: 'Complete' }).click();
         await page.waitForTimeout(3500);
 
-        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        // await page.getByRole('button', { name: 'Profile', exact: true }).click();
 
     });
 
@@ -111,11 +111,9 @@ test.describe.parallel('API Testing', async () => {
 
     test.afterEach(async () => {
         await page.close();
-      });
+    });
 
-    test(' GUD-TC-323 @reg ', async ({ request, page, context }) => {
-
-
+    test('Verify the accurate data is displayed GUD-TC-323 @reg ', async ({ request, page, context }) => {
 
         await expect.soft(page.locator('h2')).toHaveText("Monica Geller");
         await expect.soft(page.locator('#textClippingContainer').getByText('With three titles, one runners-up finish and 49 wins to their name, New Zealand ')).toHaveText("With three titles, one runners-up finish and 49 wins to their name, New Zealand are the most...    See more");
@@ -124,13 +122,9 @@ test.describe.parallel('API Testing', async () => {
         await expect.soft(page.getByText('Colombo, Sri Lanka')).toContainText('Colombo, Sri Lanka');
 
 
-
-
-
-
     });
 
-    test(' GUD-TC-324 @reg ', async ({ request, page, context }) => {
+    test('Verify the joined date is accurate GUD-TC-324 @reg ', async ({ request, page, context }) => {
 
 
         // await page.goto('https://next.gudppl.com');
@@ -159,22 +153,299 @@ test.describe.parallel('API Testing', async () => {
         // Get the name of the current month
         const currentMonthName = monthNames[currentMonthIndex];
         console.log(`Current Month: ${currentMonthName}`);
-
         await expect.soft(page.getByText('Joined, Oct 2023')).toContainText(currentMonthName);
 
+
+    });
+
+    test('Verify the user has skipped the Availability to volunteer screen GUD-TC-330 @reg', async ({ request, page, context }) => {
+
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+
+        await page.waitForTimeout(3500);
+
+        expect.soft(await page.getByLabel('Monday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Tuesday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Wednesday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Thursday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Friday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Saturday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Sunday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.locator('.MuiSwitch-root > .MuiButtonBase-root > .PrivateSwitchBase-input').isChecked()).toBeTruthy();
 
 
 
     });
 
+    test('Verify the user has skipped the Availability to volunteer screen GUD-TC-331 @reg', async ({ request, page, context }) => {
+
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(3500);
+
+        await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(1).check();
+        await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(2).check();
+        await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(3).check();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Complete' }).click();
+        await page.waitForTimeout(3500);
+
+
+        //verification
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(3500);
+
+
+        expect.soft(await page.getByLabel('Monday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(1).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Monday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Tuesday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(2).isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Tuesday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Wednesday').isChecked()).toBeTruthy();
+        expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Wednesday' }).getByRole('checkbox').nth(3).isChecked()).toBeTruthy();
+
+        expect.soft(await page.getByLabel('Thursday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Thursday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Friday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Friday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Saturday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Saturday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.getByLabel('Sunday').isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(1).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(2).isChecked()).toBeFalsy();
+        expect.soft(await page.getByRole('row', { name: 'Sunday' }).getByRole('checkbox').nth(3).isChecked()).toBeFalsy();
+
+        expect.soft(await page.locator('.MuiSwitch-root > .MuiButtonBase-root > .PrivateSwitchBase-input').isChecked()).toBeTruthy();
+
+
+
+    });
+
+    test('Verify the user has skipped the Skills and Talents screen GUD-TC-332 @reg ', async ({ request, page, context }) => {
+
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(3500);
+
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeFalsy();
+
+
+    });
+
+    test('Verify the user has filled the Skills and Talents screen GUD-TC-333 @reg ', async ({ request, page, context }) => {
+
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(3500);
+
+        await page.getByPlaceholder('Add skills and talents').click();
+        await page.getByPlaceholder('Add skills and talents').fill('Account');
+        await page.getByRole('option', { name: 'Accounting' }).click();
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Complete' }).click();
+        await page.waitForTimeout(3500);
+
+        //verification
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(2500);
+
+        expect.soft(await page.locator("//span[normalize-space()='Accounting']").isVisible()).toBeTruthy();
+
+    });
+
+    test('Verify the Causes I care about is accurate GUD-TC-334 @reg', async ({ request, page, context }) => {
+
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+
+        expect.soft(await page.getByLabel('Animal welfare').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('Education').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('People').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('Disaster relief').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('Environment').isChecked()).toBeFalsy();
+
+        await page.getByLabel('Animal welfare').check();
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+
+
+        await page.getByRole('button', { name: 'Complete' }).click();
+        await page.waitForTimeout(3500);
+
+
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+
+        expect.soft(await page.getByLabel('Animal welfare').isChecked()).toBeTruthy();
+        expect.soft(await page.getByLabel('Education').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('People').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('Disaster relief').isChecked()).toBeFalsy();
+        expect.soft(await page.getByLabel('Environment').isChecked()).toBeFalsy();
+
+
+
+    });
+
+    test('Verify the UNSDGs is accurate GUD-TC-335 @reg @smoke', async ({ request, page, context }) => {
+
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+
+        await page.waitForTimeout(4500);
+        let zeroHunger = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        let no_poverty = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        let life_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='life_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        let climate_action = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='climate_action']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        let quality_education = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        let clean_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        let clean_energy = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        let decent_work = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+
+
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(zeroHunger)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(no_poverty)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(life_water)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(climate_action)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(quality_education)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(clean_water)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(clean_energy)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(decent_work)).valueOf()).toBe(false);
+
+        await page.getByRole('button', { name: 'climate_action' }).click();
+        await page.getByRole('button', { name: 'life_water' }).click();
+
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+
+        await page.getByRole('button', { name: 'Complete' }).click();
+        await page.waitForTimeout(3500);
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByRole('button', { name: 'Edit profile' }).click();
+        await page.waitForTimeout(500);
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.getByRole('button', { name: 'Next' }).click();
+        await page.waitForTimeout(4500);
+
+        
+        zeroHunger = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        no_poverty = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        life_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='life_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        climate_action = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='climate_action']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        quality_education = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        clean_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        clean_energy = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+        decent_work = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+
+
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(zeroHunger)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(no_poverty)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(life_water)).valueOf()).toBe(true);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(climate_action)).valueOf()).toBe(true);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(quality_education)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(clean_water)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(clean_energy)).valueOf()).toBe(false);
+        expect.soft((await new utils(page).isCharacterCountMoreThan400(decent_work)).valueOf()).toBe(false);
+
+
+
+    });
+
+
 })
 
 
 
-    let email = "senuwan+1a5@smashtaps.com";
-    let pwd = "Smash@123";
-    let newUserEmailID = "Smash@123";
-test(' Filling all fields for existing user - all update apis will call here @reg ', async ({ request, page, context }) => {
+let email = "157dec21-7da5-4751-9eea-cfea90c57d99@email.webhook.site";
+let pwd = "Smash@123";
+let newUserEmailID = "Smash@123";
+test(' Filling all fields for NEW user - all POST apis will call here @reg', async ({ request, page, context }) => {
 
     //User Creation
     const utilsClass = new utils(page);
@@ -355,7 +626,7 @@ test(' Filling all fields for existing user - all update apis will call here @re
     await expect.soft(page.getByPlaceholder('Enter your last name')).toHaveValue("Gellerz");
     //await expect.soft(page.getByPlaceholder('DD')).toHaveValue("5");    // bug
     await expect.soft(page.getByPlaceholder('MM')).toHaveValue("5");
-    await expect.soft(page.getByPlaceholder('YYYY')).toHaveValue("1985");    
+    await expect.soft(page.getByPlaceholder('YYYY')).toHaveValue("1985");
 
     expect.soft(await page.locator('label').filter({ hasText: 'boy/man' }).getByRole('checkbox', { name: 'controlled' }).isChecked()).toBeTruthy();
     expect.soft(await page.locator('label').filter({ hasText: 'girl/woman' }).getByRole('checkbox', { name: 'controlled' }).isChecked()).toBeFalsy();
@@ -461,22 +732,27 @@ test(' Filling all fields for existing user - all update apis will call here @re
 
 });
 
-test(' Filling all fields for NEW user - all POST apis will call here @reg ', async ({ request, page, context }) => {
+test(' Filling all fields for Existing user - all update apis will call here @reg ', async ({ request, page, context }) => {
 
     //User Creation
-    const utilsClass = new utils(page);
-    newUserEmailID = await utilsClass.createUser(request);
-    console.info(newUserEmailID + '======== return value of email');
+    // const utilsClass = new utils(page);
+    // newUserEmailID = await utilsClass.createUser(request);
+    // console.info(newUserEmailID + '======== return value of email');
 
-    // New user adding data for first time
+    // Editing data for the existing user
     await page.goto('https://next.gudppl.com');
     await page.waitForTimeout(3000);
 
     await page.getByPlaceholder('Enter your email address').click();
-    await page.getByPlaceholder('Enter your email address').fill(newUserEmailID);
+    await page.getByPlaceholder('Enter your email address').fill(email);
     await page.getByPlaceholder('Enter your password').fill(pwd);
     await page.getByRole('button', { name: 'Continue', exact: true }).click();
     await page.waitForTimeout(3400);
+
+    await page.getByRole('button', { name: 'Profile', exact: true }).click();
+    await page.getByRole('button', { name: 'Edit profile' }).click();
+    await page.waitForTimeout(500);
+
 
     await page.getByPlaceholder('Enter your first name').click();
     await page.getByPlaceholder('Enter your first name').fill('Monicaz');
@@ -490,6 +766,10 @@ test(' Filling all fields for NEW user - all POST apis will call here @reg ', as
     await page.locator('label').filter({ hasText: 'boy/man' }).getByRole('checkbox', { name: 'controlled' }).check();
     await page.getByRole('button', { name: 'Next' }).click();
     await page.waitForTimeout(1500);
+    await page.getByLabel('Education').uncheck();
+    await page.getByLabel('People').uncheck();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.getByRole('button', { name: 'Back' }).click();
     await page.getByLabel('Education').check();
     await page.getByLabel('People').check();
     await page.getByRole('button', { name: 'Next' }).click();
@@ -499,7 +779,15 @@ test(' Filling all fields for NEW user - all POST apis will call here @reg ', as
     await page.getByRole('button', { name: 'climate_action' }).click();
     await page.getByRole('button', { name: 'life_water' }).click();
     await page.getByRole('button', { name: 'Next' }).click();
-    await page.waitForTimeout(1500);    
+    await page.getByRole('button', { name: 'Back' }).click();
+    await page.getByRole('button', { name: 'no_poverty' }).click();
+    await page.getByRole('button', { name: 'zero_hunger' }).click();
+    await page.getByRole('button', { name: 'climate_action' }).click();
+    await page.getByRole('button', { name: 'life_water' }).click();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.waitForTimeout(1500);
+    await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[1]//*[name()='svg']").click();
+    await page.waitForTimeout(1500);
     await page.getByPlaceholder('Add skills and talents').click();
     await page.getByPlaceholder('Add skills and talents').fill('market');
     await page.getByRole('option', { name: 'Marketing' }).click();
@@ -538,9 +826,9 @@ test(' Filling all fields for NEW user - all POST apis will call here @reg ', as
     await page.getByText('Dehiwala-Mount Lavinia', { exact: true }).click({ timeout: 3000 });
 
     await page.getByPlaceholder('Write few sentences about you').click();
-    await page.getByPlaceholder('Write few sentences about you').fill('Hi my name is Monica Gellerzzzzzzzzzzz');    
-    await page.getByRole('button', { name: '+94' }).click();
-    await page.getByRole('option', { name: '+677' }).click();
+    await page.getByPlaceholder('Write few sentences about you').fill('Hi my name is Monica Gellerzzzzzzzzzzz');
+    //await page.getByRole('button', { name: '+94' }).click();
+    //await page.getByRole('option', { name: '+677' }).click();
     await page.getByPlaceholder('Your phone number').click();
     await page.getByPlaceholder('Your phone number').fill('888888555');
     await page.getByRole('button', { name: 'Complete' }).click();
@@ -569,14 +857,14 @@ test(' Filling all fields for NEW user - all POST apis will call here @reg ', as
     await expect.soft(page.getByPlaceholder('Enter your last name')).toHaveValue("Gellerz");
     //await expect.soft(page.getByPlaceholder('DD')).toHaveValue("5");    // bug
     await expect.soft(page.getByPlaceholder('MM')).toHaveValue("5");
-    await expect.soft(page.getByPlaceholder('YYYY')).toHaveValue("1985");  
+    await expect.soft(page.getByPlaceholder('YYYY')).toHaveValue("1985");
 
     expect.soft(await page.locator('label').filter({ hasText: 'boy/man' }).getByRole('checkbox', { name: 'controlled' }).isChecked()).toBeTruthy();
     expect.soft(await page.locator('label').filter({ hasText: 'girl/woman' }).getByRole('checkbox', { name: 'controlled' }).isChecked()).toBeFalsy();
     expect.soft(await page.getByPlaceholder('Let me type...')).toBeEmpty();
 
     await page.getByRole('button', { name: 'Next' }).click();
-    await page.waitForTimeout(1500);    
+    await page.waitForTimeout(1500);
     expect.soft(await page.getByLabel('Education').isChecked()).toBeTruthy();
     expect.soft(await page.getByLabel('People').isChecked()).toBeTruthy();
     expect.soft(await page.getByLabel('Disaster relief').isChecked()).toBeFalsy();

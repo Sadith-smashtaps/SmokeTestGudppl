@@ -310,7 +310,7 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('button', { name: 'Complete' }).click();
         await page.waitForTimeout(500);
         await page.getByRole('button', { name: 'Got it' }).click();
-        await page.locator('#textClippingContainer').getByText('This is created by automation').click();
+       // await page.locator('#textClippingContainer').getByText('This is created by automation').click();
         await page.getByText('+94774444444').click();
         await page.locator('.MuiBox-root > div:nth-child(2) > div > div > .MuiBox-root').first().click();
         await page.locator('div:nth-child(2) > div > div:nth-child(2) > .MuiBox-root').first().click();

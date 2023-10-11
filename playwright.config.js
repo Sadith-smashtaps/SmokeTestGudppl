@@ -36,8 +36,8 @@ module.exports = defineConfig({
     trace: 'on',
     storageState:"./LoginAuth.json",
     screenshot:"on",
-    //video:"retain-on-failure",
-    video:"on",
+    video:"retain-on-failure",
+    //video:"on",
     actionTimeout: 110000,
     
     
