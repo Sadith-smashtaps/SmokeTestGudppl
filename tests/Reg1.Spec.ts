@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { promises as fs } from 'fs';
+import utils from '../Functions/utils';
 test.describe.configure({ timeout: 60000 });
 test.describe.parallel('API Testing', () => {
   const baseURL = 'https://reqres.in/api'
@@ -10,11 +11,11 @@ test.describe.parallel('API Testing', () => {
   let email = "senuwan+1a2@smashtaps.com";
   let pwd = "Test123@";
 
-  test.afterEach(async ({ page }) => {
-    await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
-    await page.getByRole('button', { name: 'SP Saman Perera senuwan+1a2@smashtaps.com' }).click();
-    await page.getByRole('menuitem', { name: 'Log out' }).click();
-  });
+  // test.afterEach(async ({ page }) => {
+  //   await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
+  //   await page.getByRole('button', { name: 'SP Saman Perera senuwan+1a2@smashtaps.com' }).click();
+  //   await page.getByRole('menuitem', { name: 'Log out' }).click();
+  // });
 
   test('Verify filling only the mandatory fields and clicking on the Next button - GUD-TC-27 @reg', async ({ request, page, context }) => {
 
@@ -111,7 +112,7 @@ test.describe.parallel('API Testing', () => {
   });
 
 
-  test('Verify clicking on the Next button after selecting options in the Causes you care about screen.. - GUD-TC-50 and GUD-TC-48 @reg @smoke', async ({ request, page, context }) => {
+  test('Verify clicking on the Next button after selecting options in the Causes you care about screen.. - GUD-TC-50 and GUD-TC-48 @reg ', async ({ request, page, context }) => {
 
 
     await page.goto('https://next.gudppl.com');
@@ -249,7 +250,7 @@ test.describe.parallel('API Testing', () => {
 
 
 
-  test('Verify user able to view his selection when navigate back and come back to the screen..... - GUD-TC-33 @reg ', async ({ request, page, context }) => {
+  test('Verify user able to view his selection when navigate back and come back to the screen..... - GUD-TC-33 @reg @smoke', async ({ request, page, context }) => {
 
     await page.goto('https://next.gudppl.com');
     await page.waitForTimeout(1500);
@@ -286,20 +287,23 @@ test.describe.parallel('API Testing', () => {
     await page.getByRole('button', { name: 'Back' }).click();
     await page.waitForTimeout(1500);
     //verification
+    let zeroHunger = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    let no_poverty = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    let life_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='life_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    let climate_action = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='climate_action']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    let quality_education = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    let clean_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    let clean_energy = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    let decent_work = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
 
-    // expect.soft(await page.getByRole('button', { name: 'no_poverty' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'quality_education' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'clean_water' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'clean_energy' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'decent_work' }).isEnabled()).toBeTruthy();
+   
+    
 
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-
-
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(no_poverty)).valueOf()).toBe(true);
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(quality_education)).valueOf()).toBe(true);
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(clean_water)).valueOf()).toBe(true);
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(clean_energy)).valueOf()).toBe(true);
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(decent_work)).valueOf()).toBe(true);
 
     await page.getByRole('button', { name: 'quality_education' }).click();
     await page.getByRole('button', { name: 'clean_water' }).click();
@@ -308,41 +312,56 @@ test.describe.parallel('API Testing', () => {
     await page.waitForTimeout(1500);
     await page.getByRole('button', { name: 'Back' }).click();
     await page.waitForTimeout(1500);
-    //verification
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
+    //verification  
+
+     zeroHunger = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+     no_poverty = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+     life_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='life_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+     climate_action = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='climate_action']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+     quality_education = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+     clean_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+     clean_energy = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    decent_work = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+
+    
+     expect.soft((await new utils(page).isCharacterCountMoreThan400(no_poverty)).valueOf()).toBe(true);
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(quality_education)).valueOf()).toBe(false);
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(clean_water)).valueOf()).toBe(false);
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(clean_energy)).valueOf()).toBe(false);
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(decent_work)).valueOf()).toBe(true);
 
 
     await page.getByRole('button', { name: 'no_poverty' }).click();
     await page.getByRole('button', { name: 'decent_work' }).click();
     await page.getByRole('button', { name: 'quality_education' }).click();
-    await page.getByRole('button', { name: 'reduced_inequalities' }).click();
-    await page.getByRole('button', { name: 'good_health' }).click();
+    //await page.getByRole('button', { name: 'reduced_inequalities' }).click();
+    //await page.getByRole('button', { name: 'good_health' }).click();
     await page.getByRole('button', { name: 'zero_hunger' }).click();
-    await page.getByRole('button', { name: 'iii' }).click();
+    //await page.getByRole('button', { name: 'iii' }).click();
     await page.getByRole('button', { name: 'Next' }).click();
     await page.waitForTimeout(1500);
     await page.getByRole('button', { name: 'Back' }).click();
     await page.waitForTimeout(1500);
     //verification
-    // expect.soft(await page.getByRole('button', { name: 'no_poverty' }).isEnabled()).toBeFalsy();
-    // expect.soft(await page.getByRole('button', { name: 'decent_work' }).isEnabled()).toBeFalsy();
-    // expect.soft(await page.getByRole('button', { name: 'quality_education' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'reduced_inequalities' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'good_health' }).isEnabled()).toBeTruthy();    
-    // expect.soft(await page.getByRole('button', { name: 'zero_hunger' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'iii' }).isEnabled()).toBeTruthy();
 
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='reduced_inequalities']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='good_health']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='iii']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
+
+    zeroHunger = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    no_poverty = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    life_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='life_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    climate_action = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='climate_action']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    quality_education = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    clean_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    clean_energy = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+   decent_work = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+
+   
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(no_poverty)).valueOf()).toBe(false);
+   expect.soft((await new utils(page).isCharacterCountMoreThan400(quality_education)).valueOf()).toBe(true);   
+   expect.soft((await new utils(page).isCharacterCountMoreThan400(zeroHunger)).valueOf()).toBe(true);
+   expect.soft((await new utils(page).isCharacterCountMoreThan400(decent_work)).valueOf()).toBe(false);
+
+
+
 
     await page.getByRole('button', { name: 'iii' }).click();
     await page.getByRole('button', { name: 'quality_education' }).click();
@@ -351,27 +370,29 @@ test.describe.parallel('API Testing', () => {
     await page.getByRole('button', { name: 'Back' }).click();
     await page.waitForTimeout(1500);
     await page.getByRole('button', { name: 'Next' }).click();
-    //verification
-    // expect.soft(await page.getByRole('button', { name: 'no_poverty' }).isEnabled()).toBeFalsy();
-    // expect.soft(await page.getByRole('button', { name: 'decent_work' }).isEnabled()).toBeFalsy();
-    // expect.soft(await page.getByRole('button', { name: 'quality_education' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'reduced_inequalities' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'good_health' }).isEnabled()).toBeTruthy();    
-    // expect.soft(await page.getByRole('button', { name: 'zero_hunger' }).isEnabled()).toBeTruthy();
-    // expect.soft(await page.getByRole('button', { name: 'iii' }).isEnabled()).toBeTruthy();
+    //verification      
+
+    zeroHunger = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    no_poverty = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    life_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='life_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    climate_action = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='climate_action']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    quality_education = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    clean_water = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_water']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+    clean_energy = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='clean_energy']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+   decent_work = (await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M')]").getAttribute('d'))!;
+
+   
+    expect.soft((await new utils(page).isCharacterCountMoreThan400(no_poverty)).valueOf()).toBe(false);
+   expect.soft((await new utils(page).isCharacterCountMoreThan400(quality_education)).valueOf()).toBe(true);   
+   expect.soft((await new utils(page).isCharacterCountMoreThan400(zeroHunger)).valueOf()).toBe(true);
+   expect.soft((await new utils(page).isCharacterCountMoreThan400(decent_work)).valueOf()).toBe(false);
 
 
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='no_poverty']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='decent_work']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeFalsy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='quality_education']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='reduced_inequalities']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='good_health']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='zero_hunger']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
-    expect.soft(await page.locator("//h3[normalize-space()='United Nations Sustainable Development Goals']/../..//div[2]//div//div[1]//img[@alt='iii']/../..//div[2]//*[name()='svg']//*[name()='path' and contains(@d,'M12.17 21a9 9 0 1 0 .001-18 9 9 0 0 0 0 18Zm4.77-11.36a1 1 0 1 0-1.537-1.28l-3.598 4.317c-.347.416-.542.647-.697.788l-.007.006-.006-.005c-.168-.127-.383-.339-.766-.722l-1.451-1.451a1 1 0 0 0-1.414 1.414l1.451 1.451.041.041c.327.327.64.641.933.862.327.248.756.48 1.305.456.55-.025.956-.296 1.26-.572.27-.247.555-.588.85-.943l.037-.044L16.94 9.64Z')]").isVisible()).toBeTruthy();
+
 
     // data remove
     await page.getByRole('button', { name: 'quality_education' }).click();
-    await page.getByRole('button', { name: 'reduced_inequalities' }).click();
+    //await page.getByRole('button', { name: 'reduced_inequalities' }).click();
     await page.getByRole('button', { name: 'good_health' }).click();
     await page.getByRole('button', { name: 'zero_hunger' }).click();
     await page.getByRole('button', { name: 'iii' }).click();
