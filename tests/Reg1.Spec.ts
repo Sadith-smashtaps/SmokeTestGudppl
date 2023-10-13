@@ -10,6 +10,12 @@ test.describe.parallel('API Testing', () => {
   let email = "senuwan+1a2@smashtaps.com";
   let pwd = "Test123@";
 
+  test.afterEach(async ({ page }) => {
+    await page.getByRole('button', { name: 'Skip this, I’ll do it later' }).click();
+    await page.getByRole('button', { name: 'SP Saman Perera senuwan+1a2@smashtaps.com' }).click();
+    await page.getByRole('menuitem', { name: 'Log out' }).click();
+  });
+
   test('Verify filling only the mandatory fields and clicking on the Next button - GUD-TC-27 @reg', async ({ request, page, context }) => {
 
     await page.goto('https://next.gudppl.com');
@@ -105,73 +111,78 @@ test.describe.parallel('API Testing', () => {
   });
 
 
-  test('Verify clicking on the Next button after selecting options in the Causes you care about screen.. - GUD-TC-50 and GUD-TC-48 @reg', async ({ request, page, context }) => {
+  test('Verify clicking on the Next button after selecting options in the Causes you care about screen.. - GUD-TC-50 and GUD-TC-48 @reg @smoke', async ({ request, page, context }) => {
 
-    //This test case is failed due to bug ID - GUD-624 -- There by comment the test case till it fix.
-    /* await page.goto('https://next.gudppl.com');
-     await page.waitForTimeout(1500);
-     
-     await page.getByPlaceholder('Enter your email address').click();
-     await page.getByPlaceholder('Enter your email address').fill('senuwan+1a2@smashtaps.com');
-     await page.getByPlaceholder('Enter your password').click();
-     await page.getByPlaceholder('Enter your password').fill('Test123@');
-     await page.getByRole('button', { name: 'Continue', exact: true }).click();
-     await page.waitForTimeout(1500);
- 
-     await page.getByRole('button', { name: 'Complete your profile now' }).click();
-     
-     await page.getByRole('button', { name: 'Next' }).click();
-     await page.waitForTimeout(2500);
- 
-     await page.getByLabel('Animal welfare').check();
-     await page.getByLabel('Education').check();
-     await page.getByLabel('Environment').check();
-     await page.getByRole('button', { name: 'Next' }).click();
-     await page.waitForTimeout(1500);
- 
-     await page.getByRole('button', { name: 'Back' }).click();
-     await page.waitForTimeout(1500);    
-     expect.soft(await page.getByLabel('Animal welfare').isEnabled()).toBeTruthy();
-     expect.soft(await page.getByLabel('Education').isEnabled()).toBeTruthy();
-     expect.soft(await page.getByLabel('Environment').isEnabled()).toBeTruthy();
- 
-     await page.getByRole('button', { name: 'Back' }).click();
-     await page.waitForTimeout(1500);
- 
-     await page.getByRole('button', { name: 'Next' }).click();
-     await page.waitForTimeout(1500);
-     expect.soft(await page.getByLabel('Animal welfare').isEnabled()).toBeTruthy();
-     expect.soft(await page.getByLabel('Education').isEnabled()).toBeTruthy();
-     expect.soft(await page.getByLabel('Environment').isEnabled()).toBeTruthy();
- 
-     //verify select all functionality   
-     await page.getByRole('button', { name: 'Select all and proceed' }).click();
-     await page.getByRole('button', { name: 'Next' }).click();
-     await page.getByRole('button', { name: 'Back' }).click();
-     expect.soft(await page.locator("//div[contains(text(),'Animal welfare')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
-     expect.soft(await page.locator("//div[contains(text(),'Disaster relief')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
-     expect.soft(await page.locator("//div[contains(text(),'Environment')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
-     expect.soft(await page.locator("//div[contains(text(),'Education')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
-     expect.soft(await page.locator("//div[contains(text(),'People')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeTruthy();
- 
- 
-     ///data remove
-     await page.getByLabel('Animal welfare').uncheck();
-     await page.getByLabel('Disaster relief').uncheck();
-     await page.getByLabel('Environment').uncheck();
-     await page.getByLabel('Education').uncheck();
-     await page.getByLabel('People').uncheck();
-     await page.getByRole('button', { name: 'Next' }).click();
-     await page.getByRole('button', { name: 'Back' }).click();
-     await page.waitForTimeout(1500);    
-     expect.soft(await page.locator("//div[contains(text(),'Animal welfare')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
-     expect.soft(await page.locator("//div[contains(text(),'Disaster relief')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
-     expect.soft(await page.locator("//div[contains(text(),'Environment')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
-     expect.soft(await page.locator("//div[contains(text(),'Education')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
-     expect.soft(await page.locator("//div[contains(text(),'People')]/../../..//span[contains(@class,'Mui-checked')]").isVisible()).toBeFalsy();
-     
-     */
-    await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-624').toHaveText("Due to this issue data are getting mismatch. Reconsider data of the user and Re run.");
+
+    await page.goto('https://next.gudppl.com');
+    await page.waitForTimeout(1500);
+
+    await page.getByPlaceholder('Enter your email address').click();
+    await page.getByPlaceholder('Enter your email address').fill('senuwan+1a2@smashtaps.com');
+    await page.getByPlaceholder('Enter your password').click();
+    await page.getByPlaceholder('Enter your password').fill('Test123@');
+    await page.getByRole('button', { name: 'Continue', exact: true }).click();
+    await page.waitForTimeout(1500);
+
+    await page.getByRole('button', { name: 'Complete your profile now' }).click();
+
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.waitForTimeout(2500);
+
+    await page.getByLabel('Animal welfare').check();
+    await page.getByLabel('Education').check();
+    await page.getByLabel('Environment').check();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.waitForTimeout(1500);
+
+    await page.getByRole('button', { name: 'Back' }).click();
+    await page.waitForTimeout(1500);
+    //  expect.soft(await page.getByLabel('Animal welfare').isEnabled()).toBeTruthy();
+    //  expect.soft(await page.getByLabel('Education').isEnabled()).toBeTruthy();
+    //  expect.soft(await page.getByLabel('Environment').isEnabled()).toBeTruthy();
+
+    expect.soft(await page.getByLabel('Animal welfare').isChecked()).toBeTruthy();
+    expect.soft(await page.getByLabel('Education').isChecked()).toBeTruthy();
+    expect.soft(await page.getByLabel('People').isChecked()).toBeFalsy();
+    expect.soft(await page.getByLabel('Disaster relief').isChecked()).toBeFalsy();
+    expect.soft(await page.getByLabel('Environment').isChecked()).toBeTruthy();
+
+    await page.getByRole('button', { name: 'Back' }).click();
+    await page.waitForTimeout(1500);
+
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.waitForTimeout(1500);
+    expect.soft(await page.getByLabel('Animal welfare').isChecked()).toBeTruthy();
+    expect.soft(await page.getByLabel('Education').isChecked()).toBeTruthy();
+    expect.soft(await page.getByLabel('People').isChecked()).toBeFalsy();
+    expect.soft(await page.getByLabel('Disaster relief').isChecked()).toBeFalsy();
+    expect.soft(await page.getByLabel('Environment').isChecked()).toBeTruthy();
+
+    //verify select all functionality   
+    await page.getByRole('button', { name: 'Select all and proceed' }).click();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.getByRole('button', { name: 'Back' }).click();
+    expect.soft(await page.getByLabel('Animal welfare').isChecked()).toBeTruthy();
+    expect.soft(await page.getByLabel('Education').isChecked()).toBeTruthy();
+    expect.soft(await page.getByLabel('People').isChecked()).toBeTruthy();
+    expect.soft(await page.getByLabel('Disaster relief').isChecked()).toBeTruthy();
+    expect.soft(await page.getByLabel('Environment').isChecked()).toBeTruthy();
+
+
+    ///data remove
+    await page.getByLabel('Animal welfare').uncheck();
+    await page.getByLabel('Disaster relief').uncheck();
+    await page.getByLabel('Environment').uncheck();
+    await page.getByLabel('Education').uncheck();
+    await page.getByLabel('People').uncheck();
+    await page.getByRole('button', { name: 'Next' }).click();
+    await page.getByRole('button', { name: 'Back' }).click();
+    await page.waitForTimeout(1500);
+    expect.soft(await page.getByLabel('Animal welfare').isChecked()).toBeFalsy();
+    expect.soft(await page.getByLabel('Education').isChecked()).toBeFalsy();
+    expect.soft(await page.getByLabel('People').isChecked()).toBeFalsy();
+    expect.soft(await page.getByLabel('Disaster relief').isChecked()).toBeFalsy();
+    expect.soft(await page.getByLabel('Environment').isChecked()).toBeFalsy();
 
   });
 
@@ -238,7 +249,7 @@ test.describe.parallel('API Testing', () => {
 
 
 
-  test('Verify user able to view his selection when navigate back and come back to the screen..... - GUD-TC-33 @reg @smoke', async ({ request, page, context }) => {
+  test('Verify user able to view his selection when navigate back and come back to the screen..... - GUD-TC-33 @reg ', async ({ request, page, context }) => {
 
     await page.goto('https://next.gudppl.com');
     await page.waitForTimeout(1500);
@@ -373,7 +384,7 @@ test.describe.parallel('API Testing', () => {
 
 
 
-  test('Verify user able to upload an image..... - GUD-TC-9 , GUD-TC-197 @reg ', async ({ request, page, context }) => {
+  test('Verify user able to upload an image..... - GUD-TC-9, GUD-TC-276 , GUD-TC-197 @reg ', async ({ request, page, context }) => {
 
     await page.goto('https://next.gudppl.com');
     await page.waitForTimeout(1500);
@@ -384,13 +395,13 @@ test.describe.parallel('API Testing', () => {
     await page.getByPlaceholder('Enter your password').click();
     await page.getByPlaceholder('Enter your password').fill('Test123@');
     await page.getByRole('button', { name: 'Continue', exact: true }).click();
-    await page.waitForTimeout(1500);    
+    await page.waitForTimeout(1500);
     await page.getByRole('button', { name: 'Complete your profile now' }).click();
     await page.getByRole('button', { name: 'Next' }).click();
     await page.waitForTimeout(1500);
     await page.getByRole('button', { name: 'Next' }).click();
     await page.waitForTimeout(1500);
-    await page.getByRole('button', { name: 'Next' }).click();    
+    await page.getByRole('button', { name: 'Next' }).click();
     await page.getByRole('row', { name: 'Sinhala delete' }).getByRole('checkbox').first().check();
     await page.getByRole('row', { name: 'Tamil delete' }).getByRole('checkbox').first().check();
     await page.getByRole('row', { name: 'English' }).getByRole('checkbox').first().check();

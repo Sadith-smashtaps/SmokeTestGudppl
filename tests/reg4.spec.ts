@@ -174,10 +174,10 @@ test.describe.parallel('API Testing', () => {
 
     });
 
-    test('Verify selecting multiple days in the Availability to volunteer screen - GUD-TC-68 , GUD-TC-74 @reg', async ({ request, page, context }) => {
+    test('Verify selecting multiple days in the Availability to volunteer screen - GUD-TC-68 , GUD-TC-74 @reg @smoke', async ({ request, page, context }) => {
 
-        await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-637').toHaveText("Test case is failed");
-        /*
+       // await expect.soft(page.getByText('Failed'), 'This test case is failed due to bug ID - GUD-637').toHaveText("Test case is failed");
+        
         await page.goto('https://next.gudppl.com');
         //await page.pause()       
 
@@ -280,8 +280,8 @@ test.describe.parallel('API Testing', () => {
 
 
         ///Data remove - this has to implement after that bug is resolved
-        await page.getByLabel('Monday').uncheck()
-        */
+       // await page.getByLabel('Monday').uncheck()
+      
 
 
     });
@@ -604,7 +604,7 @@ test.describe.parallel('API Testing', () => {
 
     });
 
-    test('Verify user clicks on the Skip I ll do it later button GUD-TC-150 @reg @smoke', async ({ request, page, context }) => {
+    test('Verify user clicks on the Skip I ll do it later button GUD-TC-150 @reg ', async ({ request, page, context }) => {
 
 
         await page.goto('https://next.gudppl.com');
