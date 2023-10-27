@@ -12,8 +12,9 @@ test.describe.serial('API Testing', () => {
     const urlOPT = 'https://webhook.site/token/';
 
     let getOPTURL = '8c7f4ba8-56fc-4af0-a25c-fbb51a7717e4';
-    let email = "6dde8eff-d953-4b50-989f-52eeda3b7f83@email.webhook.site";
+    let email = "11111157-fd69-4ced-8829-9a3835219aee@email.webhook.site";
     let pwd = "Smash@123";
+    let orgName = "Org136481";
 
 
     async function appendToFile(filePath: string, content: string): Promise<void> {
@@ -23,7 +24,7 @@ test.describe.serial('API Testing', () => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    test('Create new user with OTP and email verification GUD-TC-78,GUD-TC-81  @smoke', async ({ request, page, context }) => {
+    test('Create new user with OTP and email verification GUD-TC-78,GUD-TC-81 ', async ({ request, page, context }) => {
 
 
 
@@ -167,7 +168,7 @@ test.describe.serial('API Testing', () => {
 
     });
 
-    test('Login with verified user and complete profile preferences with all 7 steps GUD-TC-13 @smoke', async ({ page }) => {
+    test('Login with verified user and complete profile preferences with all 7 steps GUD-TC-13 ', async ({ page }) => {
         //await test.setTimeout(50000);
         await page.goto('https://next.gudppl.com');
         // await page.pause();        
@@ -252,7 +253,7 @@ test.describe.serial('API Testing', () => {
     })
     
 
-    test('Create organization @reg @smoke', async ({ page }) => {
+    test('Create organization @reg', async ({ page }) => {
 
         await page.goto('https://next.gudppl.com');
         // await page.pause();
@@ -276,6 +277,7 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('button', { name: 'Create an organization' }).click();
         await page.getByPlaceholder('Enter organization name').click();
         await page.getByPlaceholder('Enter organization name').fill('Org1' + randomNumber);
+        orgName = 'Org1' + randomNumber;
         await page.getByLabel('BusinessSmall/medium business, company, or multi-national company').check();
         await page.getByLabel('Yes').check();
         await page.getByRole('button', { name: 'Next' }).click();
@@ -313,8 +315,8 @@ test.describe.serial('API Testing', () => {
        // await page.locator('#textClippingContainer').getByText('This is created by automation').click();
         await page.getByText('+94774444444').click();
         await page.locator('.MuiBox-root > div:nth-child(2) > div > div > .MuiBox-root').first().click();
-        await page.locator('div:nth-child(2) > div > div:nth-child(2) > .MuiBox-root').first().click();
-        await page.locator('.MuiBox-root > div > div:nth-child(3) > .MuiBox-root').click();
+        //await page.locator('div:nth-child(2) > div > div:nth-child(2) > .MuiBox-root').first().click();
+       // await page.locator('.MuiBox-root > div > div:nth-child(3) > .MuiBox-root').click();
         await page.getByRole('button', { name: 'No Poverty' }).click();
         await page.getByRole('button', { name: 'Clean Water and Sanitation' }).click();
         await page.getByRole('button', { name: 'Sustainable Cities and Communities' }).click();
@@ -326,7 +328,121 @@ test.describe.serial('API Testing', () => {
 
     })
 
-    test('User Profile @reg @smoke', async ({ page }) => {
+    test('add hours and approve ', async ({ page }) => {
+
+        await page.goto('https://next.gudppl.com');
+        
+
+        await page.getByPlaceholder('Enter your email address').click();
+        console.log('email ID Login for third test case is = ' + email)
+        await page.getByPlaceholder('Enter your email address').fill(email);
+        await page.getByPlaceholder('Enter your password').fill(pwd);
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+
+        await page.waitForTimeout(1000);
+
+        await page.getByRole('button', { name: 'Add hours' }).click();
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('16/09/2023');
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('02');        
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');        
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
+        await page.getByLabel('Remote').check();
+        await page.getByPlaceholder('Add skills and talents').click();
+        await page.getByPlaceholder('Add skills and talents').fill('art ');
+        await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
+        await page.getByRole('button', { name: 'Animal welfare' }).click();
+        await page.getByRole('button', { name: 'Zero Hunger' }).click();
+        await page.getByRole('button', { name: 'No Poverty' }).click();
+        await page.getByPlaceholder('Organization name').click();
+        await page.getByPlaceholder('Organization name').fill(orgName);
+        await page.getByRole('heading', { name: orgName }).click();
+        await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
+        await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
+        //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
+        await page.getByRole('button', { name: 'Submit' }).click();
+        await page.getByRole('button', { name: 'Got it!' }).click();
+      
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByText('Pending').nth(1).click();
+        await page.getByText('activity decription').first().click();
+        await page.getByRole('heading', { name: '2h 30m' }).first().click();
+        await page.getByRole('tab', { name: 'Pending' }).click();
+        await page.getByText('Pending').nth(1).click();
+        await page.getByRole('heading', { name: '2h 30m' }).first().click();
+        await page.getByText('activity decription').first().click();
+        await page.getByRole('button', { name: 'Organizations' }).click();
+        await page.getByRole('button', { name: 'Verify Hours' }).click();
+        
+        await page.getByText('pending').nth(1).click();
+        await page.getByRole('table', { name: 'responsive table' }).getByRole('button').first().click();
+      
+        await page.getByRole('button', { name: 'Approve' }).click();
+        await page.getByRole('button', { name: 'Got it!' }).click();
+        await page.getByText('approved').first().click();
+        await page.getByRole('button', { name: 'Profile' }).click();
+        await page.getByText('Verified').first().click();
+        await page.getByRole('tab', { name: 'Approved' }).click();
+        await page.getByText('Verified').first().click();
+
+
+
+    })
+
+    test('add hours with decline @smoke', async ({ page }) => {
+
+        await page.goto('https://next.gudppl.com');        
+
+        await page.getByPlaceholder('Enter your email address').click();
+        console.log('email ID Login for third test case is = ' + email)
+        await page.getByPlaceholder('Enter your email address').fill(email);
+        await page.getByPlaceholder('Enter your password').fill(pwd);
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+
+        await page.waitForTimeout(1000);
+
+        await page.getByRole('button', { name: 'Add hours' }).click();
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('16/09/2023');
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('02');        
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');        
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
+        await page.getByLabel('Remote').check();
+        await page.getByPlaceholder('Add skills and talents').click();
+        await page.getByPlaceholder('Add skills and talents').fill('art ');
+        await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
+        await page.getByRole('button', { name: 'Animal welfare' }).click();
+        await page.getByRole('button', { name: 'Zero Hunger' }).click();
+        await page.getByRole('button', { name: 'No Poverty' }).click();
+        await page.getByPlaceholder('Organization name').click();        
+        await page.getByPlaceholder('Organization name').fill(orgName);
+        await page.getByRole('heading', { name: orgName }).click();
+        await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
+        await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
+        //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
+        await page.getByRole('button', { name: 'Submit' }).click();
+        await page.getByRole('button', { name: 'Got it!' }).click();
+
+        await page.getByRole('button', { name: 'View request' }).click();
+        await page.getByText('pending', { exact: true }).click();
+        await page.getByRole('cell', { name: 'pending' }).getByRole('button').click();
+        await page.getByRole('button', { name: 'Deny' }).click();
+        await page.getByRole('textbox').click();
+        await page.getByRole('textbox').fill('This is wrong');
+        await page.getByRole('button', { name: 'Decline' }).click();
+        await page.getByText('declined', { exact: true }).click();
+        await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2023 - 16/09/2023 declined' }).getByText('16/09/2023 - 16/09/2023').click();
+        await page.getByRole('button', { name: 'Profile' }).click();
+        await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
+        await page.getByText('16/09/2023 - 16/09/2023').first().click();
+        await page.getByRole('tab', { name: 'Declined' }).click();
+        await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
+        //await page.getByText('16/09/2023 - 16/09/2023').click();
+
+
+    })
+
+    test('User Profile @reg ', async ({ page }) => {
 
         await page.goto('https://next.gudppl.com');
         await page.waitForTimeout(3000);
