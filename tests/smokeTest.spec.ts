@@ -12,9 +12,9 @@ test.describe.serial('API Testing', () => {
     const urlOPT = 'https://webhook.site/token/';
 
     let getOPTURL = '8c7f4ba8-56fc-4af0-a25c-fbb51a7717e4';
-    let email = "11111157-fd69-4ced-8829-9a3835219aee@email.webhook.site";
+    let email = "724fdd8d-33da-42b7-9a3a-a5395536e7b2@email.webhook.site";
     let pwd = "Smash@123";
-    let orgName = "Org136481";
+    let orgName = "Org140431";
 
 
     async function appendToFile(filePath: string, content: string): Promise<void> {
@@ -311,16 +311,16 @@ test.describe.serial('API Testing', () => {
         await page.getByLabel('I verify that I am an authorized representative of this organization and have the right to act on its behalf in the creation and management of this profile. The organization and I agree to gudppl\'s term and conditions.').check();
         await page.getByRole('button', { name: 'Complete' }).click();
         await page.waitForTimeout(500);
-        await page.getByRole('button', { name: 'Got it' }).click();
-       // await page.locator('#textClippingContainer').getByText('This is created by automation').click();
-        await page.getByText('+94774444444').click();
-        await page.locator('.MuiBox-root > div:nth-child(2) > div > div > .MuiBox-root').first().click();
-        //await page.locator('div:nth-child(2) > div > div:nth-child(2) > .MuiBox-root').first().click();
-       // await page.locator('.MuiBox-root > div > div:nth-child(3) > .MuiBox-root').click();
-        await page.getByRole('button', { name: 'No Poverty' }).click();
-        await page.getByRole('button', { name: 'Clean Water and Sanitation' }).click();
-        await page.getByRole('button', { name: 'Sustainable Cities and Communities' }).click();
-        await page.getByRole('button', { name: 'Peace, Justice and Strong Institutions' }).click();
+        // https://gudppl.atlassian.net/browse/GUD-1062
+        // await page.getByRole('button', { name: 'Got it' }).click();
+       
+        // await page.getByText('+94774444444').click();
+        // await page.locator('.MuiBox-root > div:nth-child(2) > div > div > .MuiBox-root').first().click();
+       
+        // await page.getByRole('button', { name: 'No Poverty' }).click();
+        // await page.getByRole('button', { name: 'Clean Water and Sanitation' }).click();
+        // await page.getByRole('button', { name: 'Sustainable Cities and Communities' }).click();
+        // await page.getByRole('button', { name: 'Peace, Justice and Strong Institutions' }).click();
 
 
 
@@ -389,7 +389,7 @@ test.describe.serial('API Testing', () => {
 
     })
 
-    test('add hours with decline @smoke', async ({ page }) => {
+    test('add hours with decline ', async ({ page }) => {
 
         await page.goto('https://next.gudppl.com');        
 
@@ -431,13 +431,73 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('textbox').fill('This is wrong');
         await page.getByRole('button', { name: 'Decline' }).click();
         await page.getByText('declined', { exact: true }).click();
-        await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2023 - 16/09/2023 declined' }).getByText('16/09/2023 - 16/09/2023').click();
+     //   await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2023 - 16/09/2023 declined' }).getByText('16/09/2023 - 16/09/2023').click();
+        await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2023 - 16/09/2023 Remote declined' }).getByRole('cell', { name: '16/09/2023 - 16/09/2023' }).click();
         await page.getByRole('button', { name: 'Profile' }).click();
         await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
         await page.getByText('16/09/2023 - 16/09/2023').first().click();
         await page.getByRole('tab', { name: 'Declined' }).click();
         await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
         //await page.getByText('16/09/2023 - 16/09/2023').click();
+
+
+    })
+
+    test('add hours with Amendments @smoke', async ({ page }) => {
+
+        await page.goto('https://next.gudppl.com');        
+
+        await page.getByPlaceholder('Enter your email address').click();
+        console.log('email ID Login for third test case is = ' + email)
+        await page.getByPlaceholder('Enter your email address').fill(email);
+        await page.getByPlaceholder('Enter your password').fill(pwd);
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
+
+        await page.waitForTimeout(1000);
+
+        await page.getByRole('button', { name: 'Add hours' }).click();
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('16/09/2023');
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('08');        
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');        
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
+        await page.getByLabel('Remote').check();
+        await page.getByPlaceholder('Add skills and talents').click();
+        await page.getByPlaceholder('Add skills and talents').fill('art ');
+        await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
+        await page.getByRole('button', { name: 'Animal welfare' }).click();
+        await page.getByRole('button', { name: 'Zero Hunger' }).click();
+        await page.getByRole('button', { name: 'No Poverty' }).click();
+        await page.getByPlaceholder('Organization name').click();        
+        await page.getByPlaceholder('Organization name').fill(orgName);
+        await page.getByRole('heading', { name: orgName }).click();
+        await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
+        await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
+        //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
+        await page.getByRole('button', { name: 'Submit' }).click();
+        await page.getByRole('button', { name: 'Got it!' }).click();
+
+        await page.getByRole('button', { name: 'View request' }).click();        
+        await page.getByText('pending', { exact: true }).click();
+        await page.getByRole('cell', { name: 'pending' }).getByRole('button').click();
+        await page.getByRole('button', { name: 'Amend' }).click();
+        // await page.locator('[id="\\:r4j\\:"]').click();
+        // await page.locator('[id="\\:r4j\\:"]').fill('08');
+        //await page.getByText('activity decription').fill('activity decription amendm');
+        await page.getByText('activity decription').fill('activity decription amendment');
+        await page.getByRole('button', { name: 'Disaster relief' }).click();
+        await page.getByRole('button', { name: 'Good Health and Well-being' }).click();
+        await page.locator('textarea').nth(2).click();
+        await page.locator('textarea').nth(2).fill('I just amended');
+        await page.getByRole('button', { name: 'Amend & Approve' }).click();
+        await page.getByText('8h 30m').click();     
+        await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2023 - 16/09/2023 Remote approved' }).getByText('approved').click();
+        await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2023 - 16/09/2023 Remote approved' }).getByRole('button').click();
+
+        //await page.getByText('8h 30m').click();
+        await page.getByText('Disaster relief').click();
+        await page.getByText('activity decription amendment').click();
+       
 
 
     })
