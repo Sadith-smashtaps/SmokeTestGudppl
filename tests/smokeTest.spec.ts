@@ -12,9 +12,9 @@ test.describe.serial('API Testing', () => {
     const urlOPT = 'https://webhook.site/token/';
 
     let getOPTURL = '8c7f4ba8-56fc-4af0-a25c-fbb51a7717e4';
-    let email = "724fdd8d-33da-42b7-9a3a-a5395536e7b2@email.webhook.site";
-    let pwd = "Smash@123";
-    let orgName = "Org140431";
+    let email = "waruni+158@smashtaps.com";
+    let pwd = "User@123";//Smash@123
+    let orgName = "Org126963";
 
 
     async function appendToFile(filePath: string, content: string): Promise<void> {
@@ -378,7 +378,8 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('table', { name: 'responsive table' }).getByRole('button').first().click();
       
         await page.getByRole('button', { name: 'Approve' }).click();
-        await page.getByRole('button', { name: 'Got it!' }).click();
+        //await page.getByRole('button', { name: 'Got it!' }).click();
+        await page.getByRole('button', { name: 'Got it' }).click();
         await page.getByText('approved').first().click();
         await page.getByRole('button', { name: 'Profile' }).click();
         await page.getByText('Verified').first().click();
@@ -421,7 +422,8 @@ test.describe.serial('API Testing', () => {
         await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
         //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
         await page.getByRole('button', { name: 'Submit' }).click();
-        await page.getByRole('button', { name: 'Got it!' }).click();
+        //await page.getByRole('button', { name: 'Got it!' }).click();
+        await page.getByRole('button', { name: 'Got it' }).click();
 
         await page.getByRole('button', { name: 'View request' }).click();
         await page.getByText('pending', { exact: true }).click();
@@ -475,7 +477,8 @@ test.describe.serial('API Testing', () => {
         await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
         //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
         await page.getByRole('button', { name: 'Submit' }).click();
-        await page.getByRole('button', { name: 'Got it!' }).click();
+        //await page.getByRole('button', { name: 'Got it!' }).click();
+        await page.getByRole('button', { name: 'Got it' }).click();
 
         await page.getByRole('button', { name: 'View request' }).click();        
         await page.getByText('pending', { exact: true }).click();

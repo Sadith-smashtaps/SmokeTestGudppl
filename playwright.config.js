@@ -33,9 +33,10 @@ module.exports = defineConfig({
     // },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on',
+    //trace: 'on',
+    //trace: 'retain-on-failure',
     storageState:"./LoginAuth.json",
-    //screenshot:"on",
+    screenshot: "only-on-failure",
     //video:"retain-on-failure",
     //video:"on",
     actionTimeout: 110000,
