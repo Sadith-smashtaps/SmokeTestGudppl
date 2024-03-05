@@ -12,7 +12,8 @@ test.describe.serial('API Testing', () => {
     const urlOPT = 'https://webhook.site/token/';
 
     let getOPTURL = '8c7f4ba8-56fc-4af0-a25c-fbb51a7717e4';
-    let email = "waruni+158@smashtaps.com";
+    //let email = "waruni+158@smashtaps.com";
+    let email = "a6f4e295-3fc4-4871-acb5-86acac41918d@email.webhook.site";    
     let pwd = "User@123";//Smash@123
     let orgName = "Org126963";
 
@@ -168,7 +169,7 @@ test.describe.serial('API Testing', () => {
 
     });
 
-    test('Login with verified user and complete profile preferences with all 7 steps GUD-TC-13 ', async ({ page }) => {
+    test('Login with verified user and complete profile preferences with all 7 steps GUD-TC-13 @smoke ' , async ({ page }) => {
         //await test.setTimeout(50000);
         await page.goto('https://next.gudppl.com');
         // await page.pause();        
@@ -205,7 +206,8 @@ test.describe.serial('API Testing', () => {
 
         await page.getByPlaceholder('Add skills and talents').click();
         await page.getByPlaceholder('Add skills and talents').fill('Account');
-        await page.getByRole('option', { name: 'Accounting' }).click();
+        //await page.getByRole('option', { name: 'Accounting' }).click();   
+        await page.getByRole('option', { name: 'Accounting', exact: true }).click();     
         await page.getByRole('row', { name: 'English' }).getByRole('checkbox').nth(1).check();
         await page.getByRole('row', { name: 'Sinhala delete' }).getByRole('checkbox').nth(3).check();
         await page.getByRole('row', { name: 'Tamil delete' }).getByRole('checkbox').nth(4).check();
@@ -244,7 +246,7 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('button', { name: 'Complete' }).click();
         await page.waitForTimeout(3500);
 
-        await expect.soft(page.getByRole('heading', { name: 'Welcome to Gudppl!' })).toHaveText("Welcome to Gudppl!");
+        await expect.soft(page.getByRole('heading', { name: 'Welcome to gudppl!' })).toHaveText("Welcome to gudppl!");
 
      
 
@@ -308,7 +310,8 @@ test.describe.serial('API Testing', () => {
         await page.locator('input[name="website"]').fill('https://www.rugbyworldcup.com/2023');
         await page.locator('input[name="profileInformation"]').click();
         await page.locator('input[name="profileInformation"]').fill('https://www.espncricinfo.com/');
-        await page.getByLabel('I verify that I am an authorized representative of this organization and have the right to act on its behalf in the creation and management of this profile. The organization and I agree to gudppl\'s term and conditions.').check();
+        //await page.getByLabel('I verify that I am an authorized representative of this organization and have the right to act on its behalf in the creation and management of this profile. The organization and I agree to gudppl\'s term and conditions.').check();
+        await page.getByLabel('I verify that I am an authorized representative of this organization and have the right to act on its behalf in the creation and management of this profile. The organization and I agree to gudppl\'s Terms & Conditions.').check();
         await page.getByRole('button', { name: 'Complete' }).click();
         await page.waitForTimeout(500);
         // https://gudppl.atlassian.net/browse/GUD-1062
@@ -361,7 +364,8 @@ test.describe.serial('API Testing', () => {
         await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
         //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
         await page.getByRole('button', { name: 'Submit' }).click();
-        await page.getByRole('button', { name: 'Got it!' }).click();
+        //await page.getByRole('button', { name: 'Got it!' }).click();
+        await page.getByRole('button', { name: 'Got it' }).click();
       
         await page.getByRole('button', { name: 'Profile', exact: true }).click();
         await page.getByText('Pending').nth(1).click();
@@ -445,7 +449,7 @@ test.describe.serial('API Testing', () => {
 
     })
 
-    test('add hours with Amendments @smoke', async ({ page }) => {
+    test('add hours with Amendments ', async ({ page }) => {
 
         await page.goto('https://next.gudppl.com');        
 
@@ -493,9 +497,9 @@ test.describe.serial('API Testing', () => {
         await page.locator('textarea').nth(2).click();
         await page.locator('textarea').nth(2).fill('I just amended');
         await page.getByRole('button', { name: 'Amend & Approve' }).click();
-        await page.getByText('8h 30m').click();     
-        await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2023 - 16/09/2023 Remote approved' }).getByText('approved').click();
-        await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2023 - 16/09/2023 Remote approved' }).getByRole('button').click();
+        //await page.getByText('8h 30m').click();     
+       // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2023 - 16/09/2023 Remote approved' }).getByText('approved').click();
+       // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2023 - 16/09/2023 Remote approved' }).getByRole('button').click();
 
         //await page.getByText('8h 30m').click();
         await page.getByText('Disaster relief').click();
@@ -506,7 +510,7 @@ test.describe.serial('API Testing', () => {
     })
 
     test('User Profile @reg ', async ({ page }) => {
-
+        //GUD-1443 bug is open
         await page.goto('https://next.gudppl.com');
         await page.waitForTimeout(3000);
 
@@ -542,8 +546,12 @@ test.describe.serial('API Testing', () => {
         await page.waitForTimeout(1500);
         await page.locator("//h3[normalize-space()='Your skills & talents']/../div/div/div[2]/div[1]//*[name()='svg']").click();
         await page.getByPlaceholder('Add skills and talents').click();
+        // await page.getByPlaceholder('Add skills and talents').fill('market');
+        // await page.getByRole('option', { name: 'Marketing' }).click();
+
         await page.getByPlaceholder('Add skills and talents').fill('market');
-        await page.getByRole('option', { name: 'Marketing' }).click();
+        await page.getByRole('option', { name: 'Marketing', exact: true }).click();
+
         await page.getByRole('row', { name: 'Sinhala delete' }).getByRole('checkbox').first().check();
         await page.getByRole('row', { name: 'Tamil delete' }).getByRole('checkbox').first().check();
         await page.getByRole('row', { name: 'English' }).getByRole('checkbox').first().check();
@@ -586,9 +594,9 @@ test.describe.serial('API Testing', () => {
         //await page.getByPlaceholder('Your phone number').click();
         //await page.getByRole('button', { name: '+94' }).click();
         await page.getByRole('button', { name: '+94' }).click();
-        await page.getByRole('option', { name: '+677' }).click();
+        await page.getByRole('option', { name: '+971' }).click();
         await page.getByPlaceholder('Your phone number').click();
-        await page.getByPlaceholder('Your phone number').fill('888888555');
+        await page.getByPlaceholder('Your phone number').fill('774611558');
         await page.getByRole('button', { name: 'Complete' }).click();
         await page.waitForTimeout(1000);
         await page.getByRole('button', { name: 'Profile', exact: true }).click();
@@ -710,8 +718,8 @@ test.describe.serial('API Testing', () => {
 
         await page.getByRole('button', { name: 'Next' }).click();
         await page.waitForTimeout(1000);
-        expect.soft(await page.locator("//input[@value='+677']")).toHaveValue('+677');
-        await expect.soft(page.getByPlaceholder('Your phone number')).toHaveValue("888888555");
+        expect.soft(await page.locator("//input[@value='+971']")).toHaveValue('+971');
+        await expect.soft(page.getByPlaceholder('Your phone number')).toHaveValue("774611558");
         // await expect.soft(page.getByPlaceholder('Select your country')).toHaveValue("+677");  // due to bug     
         await expect.soft(page.getByPlaceholder('Write few sentences about you')).toHaveValue("Hi my name is Monica Gellerzzzzzzzzzzz");
 
