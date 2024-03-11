@@ -363,6 +363,7 @@ test.describe.serial('API Testing', () => {
         await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
         await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
         //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
+        await page.waitForTimeout(1000);
         await page.getByRole('button', { name: 'Submit' }).click();
         //await page.getByRole('button', { name: 'Got it!' }).click();
         await page.getByRole('button', { name: 'Got it' }).click();
