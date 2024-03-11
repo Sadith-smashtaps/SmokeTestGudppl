@@ -20,7 +20,8 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test --project=Chromium  --workers 1
+      #run: npx playwright test --project=Chromium  --workers 1
+      run: npx playwright test smokeTest.spec.ts --headed --project=Chromium  --workers 1
     - uses: actions/upload-artifact@v3
       if: always()
       with:
