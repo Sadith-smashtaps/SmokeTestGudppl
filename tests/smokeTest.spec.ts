@@ -307,7 +307,7 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('button', { name: 'Next' }).click();
         await page.getByLabel('51-100').check();
         await page.locator('input[name="website"]').click();
-        await page.locator('input[name="website"]').fill('https://www.rugbyworldcup.com/2023');
+        await page.locator('input[name="website"]').fill('https://www.rugbyworldcup.com/2024');
         await page.locator('input[name="profileInformation"]').click();
         await page.locator('input[name="profileInformation"]').fill('https://www.espncricinfo.com/');
         //await page.getByLabel('I verify that I am an authorized representative of this organization and have the right to act on its behalf in the creation and management of this profile. The organization and I agree to gudppl\'s term and conditions.').check();
@@ -346,7 +346,7 @@ test.describe.serial('API Testing', () => {
 
         await page.getByRole('button', { name: 'Add hours' }).click();
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
-        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('16/09/2023');
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('17/09/2023');
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('02');        
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');        
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
@@ -409,7 +409,7 @@ test.describe.serial('API Testing', () => {
 
         await page.getByRole('button', { name: 'Add hours' }).click();
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
-        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('16/09/2023');
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('17/09/2023');
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('02');        
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');        
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
@@ -438,14 +438,14 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('textbox').fill('This is wrong');
         await page.getByRole('button', { name: 'Decline' }).click();
         await page.getByText('declined', { exact: true }).click();
-     //   await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2023 - 16/09/2023 declined' }).getByText('16/09/2023 - 16/09/2023').click();
-        await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2023 - 16/09/2023 Remote declined' }).getByRole('cell', { name: '16/09/2023 - 16/09/2023' }).click();
+     //   await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2024 - 16/09/2024 declined' }).getByText('16/09/2024 - 16/09/2024').click();
+        await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2023 - 17/09/2023 Remote declined' }).getByRole('cell', { name: '16/09/2023 - 17/09/2023' }).click();
         await page.getByRole('button', { name: 'Profile' }).click();
         await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
-        await page.getByText('16/09/2023 - 16/09/2023').first().click();
+        await page.getByText('16/09/2023 - 17/09/2023').first().click();
         await page.getByRole('tab', { name: 'Declined' }).click();
         await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
-        //await page.getByText('16/09/2023 - 16/09/2023').click();
+        //await page.getByText('16/09/2024 - 16/09/2024').click();
 
 
     })
@@ -464,7 +464,7 @@ test.describe.serial('API Testing', () => {
 
         await page.getByRole('button', { name: 'Add hours' }).click();
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
-        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('16/09/2023');
+        await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('17/09/2023');
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('08');        
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');        
         await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
@@ -499,8 +499,8 @@ test.describe.serial('API Testing', () => {
         await page.locator('textarea').nth(2).fill('I just amended');
         await page.getByRole('button', { name: 'Amend & Approve' }).click();
         //await page.getByText('8h 30m').click();     
-       // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2023 - 16/09/2023 Remote approved' }).getByText('approved').click();
-       // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2023 - 16/09/2023 Remote approved' }).getByRole('button').click();
+       // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2024 - 17/09/2024 Remote approved' }).getByText('approved').click();
+       // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2024 - 17/09/2024 Remote approved' }).getByRole('button').click();
 
         //await page.getByText('8h 30m').click();
         await page.getByText('Disaster relief').click();
