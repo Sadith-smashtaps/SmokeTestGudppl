@@ -1,0 +1,3 @@
+[submodule "Playwright_Molly"]
+	path = Playwright_Molly
+	url = https://github.com/Sadith-smashtaps/Playwright_Molly.git
