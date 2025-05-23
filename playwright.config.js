@@ -36,9 +36,9 @@ module.exports = defineConfig({
     //trace: 'on',
     trace: 'retain-on-failure',
     storageState:"./LoginAuth.json",
-    screenshot: "only-on-failure",
+    //screenshot: "only-on-failure",
     //video:"retain-on-failure",
-    video:"on",
+    //video:"on",
     actionTimeout: 120000,
     
     
@@ -59,15 +59,15 @@ module.exports = defineConfig({
       
     },
 
-    {
+    /*{
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
-    },
+    },*/
 
-    {
+    /*{
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
-    },
+    },*/
 
     /* Test against mobile viewports. */
     // {
