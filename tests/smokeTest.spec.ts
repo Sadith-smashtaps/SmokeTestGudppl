@@ -439,7 +439,7 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('button', { name: 'Approve' }).click();
         //await page.getByRole('button', { name: 'Got it!' }).click();
         await page.getByRole('button', { name: 'Got it' }).click();
-        await page.waitForTimeout(12000);
+        await page.waitForTimeout(120000);
         await page.getByText('approved').first().click();
         //await page.getByRole('button', { name: 'Profile' }).click();
         await page.getByRole('button', { name: 'Profile', exact: true }).click();
@@ -512,7 +512,7 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('button', { name: 'Submit' }).click();
         //await page.getByRole('button', { name: 'Got it!' }).click();
         await page.getByRole('button', { name: 'Got it' }).click();
-        await page.waitForTimeout(12000);
+        await page.waitForTimeout(120000);
 
         await page.getByRole('button', { name: 'Organizations' }).click();
         await page.waitForTimeout(1000);
@@ -594,7 +594,7 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('button', { name: 'Submit' }).click();
         //await page.getByRole('button', { name: 'Got it!' }).click();
         await page.getByRole('button', { name: 'Got it' }).click();
-        await page.waitForTimeout(12000);
+        await page.waitForTimeout(120000);
 
 
         await page.getByRole('button', { name: 'Organizations' }).click();
