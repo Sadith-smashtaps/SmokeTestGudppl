@@ -43,8 +43,8 @@ module.exports = defineConfig({
     //trace: 'on',
     trace: 'retain-on-failure',
     storageState:"./LoginAuth.json",
-    //screenshot: "only-on-failure",
-    //video:"retain-on-failure",
+    screenshot: "only-on-failure",
+    video:"retain-on-failure",
     //video:"on",
     actionTimeout: 120000,
     headless: true,                    // Force headless mode everywhere (especially CI)
