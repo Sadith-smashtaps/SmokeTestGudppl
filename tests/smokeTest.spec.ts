@@ -417,7 +417,7 @@ test.describe.serial('API Testing', () => {
         await page.getByRole('button', { name: 'Submit' }).click();
         //await page.getByRole('button', { name: 'Got it!' }).click();
         await page.getByRole('button', { name: 'Got it' }).click();
-        await page.waitForTimeout(120000);
+        await page.waitForTimeout(15000);
         //await expect(page.getByRole('button', { name: /got it/i })).toBeVisible({ timeout: 30000 });
         //await page.getByRole('button', { name: /got it/i }).click();
 
