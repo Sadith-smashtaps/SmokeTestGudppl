@@ -416,8 +416,34 @@ test.describe.serial('API Testing', () => {
         await page.waitForTimeout(1000);
         await page.getByRole('button', { name: 'Submit' }).click();
         //await page.getByRole('button', { name: 'Got it!' }).click();
-        await page.getByRole('button', { name: 'Got it' }).click();
-        await page.waitForTimeout(15000);
+        //await page.getByRole('button', { name: 'Got it' }).click();
+        //await page.waitForTimeout(15000);
+        // ...existing code...
+
+// Set up a listener to print all network responses and their payloads
+page.on('response', async (response) => {
+    try {
+        const url = response.url();
+        const status = response.status();
+        const contentType = response.headers()['content-type'] || '';
+        let body = '';
+        if (contentType.includes('application/json')) {
+            body = await response.json();
+        } else {
+            body = await response.text();
+        }
+        console.log(`Response: ${url} [${status}]`);
+        console.log('Payload:', body);
+    } catch (e) {
+        // Ignore errors for non-JSON responses
+    }
+});
+
+// Click the "Got it" button
+await page.getByRole('button', { name: 'Got it' }).click();
+await page.waitForTimeout(15000);
+
+// ...existing code...
         //await expect(page.getByRole('button', { name: /got it/i })).toBeVisible({ timeout: 30000 });
         //await page.getByRole('button', { name: /got it/i }).click();
 
