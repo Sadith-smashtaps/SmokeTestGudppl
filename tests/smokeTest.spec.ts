@@ -1163,6 +1163,7 @@ test.describe.serial('API Testing', () => {
         
 
         // Load the saved session state from auth.json
+        //26/05/2025
         const context = await browser.newContext({ storageState: 'auth.json' });
         const page = await context.newPage();
 
