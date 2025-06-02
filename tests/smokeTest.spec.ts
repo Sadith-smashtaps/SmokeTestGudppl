@@ -59,7 +59,8 @@ test.describe.serial('API Testing', () => {
         const responseBody1 = JSON.parse(await response1.text())
         console.log(responseBody1.data.uuid)
         /////////////////////////////////////////////////////////////
-        await page.goto('https://next.gudppl.com/signup');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.getByText('Create an account').click();
         // await page.pause()
 
 
@@ -182,7 +183,7 @@ test.describe.serial('API Testing', () => {
 
     test('Login with verified user and complete profile preferences with all 7 steps GUD-TC-13  @reg', async ({ page }) => {
         //await test.setTimeout(50000);
-        await page.goto('https://next.gudppl.com');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
         // await page.pause();        
 
         await page.getByPlaceholder('Enter your email address').click();
@@ -277,7 +278,7 @@ test.describe.serial('API Testing', () => {
     test('Create multiple organizations - GUD-TC-942 @skip', async ({ page }) => {
 
         // Login
-        await page.goto('https://next.gudppl.com');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
         await page.getByPlaceholder('Enter your email address').click();
         console.log('email ID Login is = ' + email);
         await page.getByPlaceholder('Enter your email address').fill(email);
@@ -352,317 +353,317 @@ test.describe.serial('API Testing', () => {
         }
     });
 
-//     test('add hours and approve @skip', async ({ page }) => {
+    test('add hours and approve @skip', async ({ page }) => {
 
-//         await page.goto('https://next.gudppl.com');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
 
 
-//         await page.getByPlaceholder('Enter your email address').click();
-//         console.log('email ID Login for third test case is = ' + email)
-//         await page.getByPlaceholder('Enter your email address').fill(email);
-//         await page.getByPlaceholder('Enter your password').fill(pwd);
-//         await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.getByPlaceholder('Enter your email address').click();
+        console.log('email ID Login for third test case is = ' + email)
+        await page.getByPlaceholder('Enter your email address').fill(email);
+        await page.getByPlaceholder('Enter your password').fill(pwd);
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
 
-//         await page.waitForTimeout(1000);
+        await page.waitForTimeout(1000);
 
-//         await page.getByRole('button', { name: 'Add hours' }).click();
-//         await page.getByPlaceholder('Host organization name').click();
-//         await page.getByPlaceholder('Host organization name').fill(orgName);
-//         await page.getByRole('heading', { name: orgName }).click();
-//         await page.getByPlaceholder('Name of coordinator/supervisor').click();
-//         await page.getByPlaceholder('Name of coordinator/supervisor').fill('rajapaksha');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('17/09/2023');
-//         await page.getByPlaceholder('DD/MM/YYYY').first().click();
-//         await page.getByPlaceholder('DD/MM/YYYY').first().fill('16/09/2023');
-//         await page.getByPlaceholder('DD/MM/YYYY').nth(1).click();
-//         await page.getByPlaceholder('DD/MM/YYYY').nth(1).fill('17/09/2023');
-//         for (let i = 0; i < 2; i++) {
-//             await page.locator('.MuiButtonGroup-root > button').first().click();
-//         }
+        await page.getByRole('button', { name: 'Add hours' }).click();
+        await page.getByPlaceholder('Host organization name').click();
+        await page.getByPlaceholder('Host organization name').fill(orgName);
+        await page.getByRole('heading', { name: orgName }).click();
+        await page.getByPlaceholder('Name of coordinator/supervisor').click();
+        await page.getByPlaceholder('Name of coordinator/supervisor').fill('rajapaksha');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('17/09/2023');
+        await page.getByPlaceholder('DD/MM/YYYY').first().click();
+        await page.getByPlaceholder('DD/MM/YYYY').first().fill('16/09/2023');
+        await page.getByPlaceholder('DD/MM/YYYY').nth(1).click();
+        await page.getByPlaceholder('DD/MM/YYYY').nth(1).fill('17/09/2023');
+        for (let i = 0; i < 2; i++) {
+            await page.locator('.MuiButtonGroup-root > button').first().click();
+        }
         
-//         for (let i = 0; i < 6; i++) {
-//             await page.locator('div:nth-child(3) > .MuiFormControl-root > .MuiInputBase-root > .MuiButtonGroup-root > button').first().click();
-//         }
+        for (let i = 0; i < 6; i++) {
+            await page.locator('div:nth-child(3) > .MuiFormControl-root > .MuiInputBase-root > .MuiButtonGroup-root > button').first().click();
+        }
         
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('02');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
-//         await page.getByPlaceholder('Add description').click();
-//         await page.getByPlaceholder('Add description').fill('activity description')
-//         await page.getByLabel('Remote').check();
-//         await page.getByRole('button', { name: 'Animal welfare' }).click();
-//         await page.getByRole('button', { name: 'Zero Hunger' }).click();
-//         await page.getByRole('button', { name: 'No Poverty' }).click();
-//         await page.getByPlaceholder('Add skills and talents').click();
-//         await page.getByPlaceholder('Add skills and talents').fill('art ');
-//         await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('02');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
+        await page.getByPlaceholder('Add description').click();
+        await page.getByPlaceholder('Add description').fill('activity description')
+        await page.getByLabel('Remote').check();
+        await page.getByRole('button', { name: 'Animal welfare' }).click();
+        await page.getByRole('button', { name: 'Zero Hunger' }).click();
+        await page.getByRole('button', { name: 'No Poverty' }).click();
+        await page.getByPlaceholder('Add skills and talents').click();
+        await page.getByPlaceholder('Add skills and talents').fill('art ');
+        await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
         
         
-//         //await page.getByPlaceholder('Organization name').click();
-//         //await page.getByPlaceholder('Organization name').fill(orgName);
-//         //await page.getByRole('heading', { name: orgName }).click();
-//         //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
-//         //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
-//         //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
-//         await page.waitForTimeout(1000);
-//         await page.getByRole('button', { name: 'Submit' }).click();
-//         //await page.getByRole('button', { name: 'Got it!' }).click();
-//         //await page.getByRole('button', { name: 'Got it' }).click();
-//         //await page.waitForTimeout(15000);
-//         // ...existing code...
+        //await page.getByPlaceholder('Organization name').click();
+        //await page.getByPlaceholder('Organization name').fill(orgName);
+        //await page.getByRole('heading', { name: orgName }).click();
+        //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
+        //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
+        //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('button', { name: 'Submit' }).click();
+        //await page.getByRole('button', { name: 'Got it!' }).click();
+        //await page.getByRole('button', { name: 'Got it' }).click();
+        //await page.waitForTimeout(15000);
+        // ...existing code...
 
-// // Set up a listener to print all network responses and their payloads
-// page.on('response', async (response) => {
-//     try {
-//         const url = response.url();
-//         const status = response.status();
-//         const contentType = response.headers()['content-type'] || '';
-//         let body = '';
-//         if (contentType.includes('application/json')) {
-//             body = await response.json();
-//         } else {
-//             body = await response.text();
-//         }
-//         console.log(`Response: ${url} [${status}]`);
-//         console.log('Payload:', body);
-//     } catch (e) {
-//         // Ignore errors for non-JSON responses
-//     }
-// });
+// Set up a listener to print all network responses and their payloads
+page.on('response', async (response) => {
+    try {
+        const url = response.url();
+        const status = response.status();
+        const contentType = response.headers()['content-type'] || '';
+        let body = '';
+        if (contentType.includes('application/json')) {
+            body = await response.json();
+        } else {
+            body = await response.text();
+        }
+        console.log(`Response: ${url} [${status}]`);
+        console.log('Payload:', body);
+    } catch (e) {
+        // Ignore errors for non-JSON responses
+    }
+});
 
-// // Click the "Got it" button
-// await page.getByRole('button', { name: 'Got it' }).click();
-// await page.waitForTimeout(15000);
+// Click the "Got it" button
+await page.getByRole('button', { name: 'Got it' }).click();
+await page.waitForTimeout(15000);
 
-// // ...existing code...
-//         //await expect(page.getByRole('button', { name: /got it/i })).toBeVisible({ timeout: 30000 });
-//         //await page.getByRole('button', { name: /got it/i }).click();
+// ...existing code...
+        //await expect(page.getByRole('button', { name: /got it/i })).toBeVisible({ timeout: 30000 });
+        //await page.getByRole('button', { name: /got it/i }).click();
 
-//         await page.getByRole('button', { name: 'Profile', exact: true }).click();
-//         //await page.getByText('Pending').nth(1).click();
-//         await expect.soft(page.locator('p').filter({ hasText: 'Pending' })).toBeVisible();
-//         //await page.getByText('activity decription').first().click();
-//         await expect.soft(page.getByText('activity description')).toBeVisible();
-//         //await page.getByRole('heading', { name: '2h 30m' }).first().click();
-//         await expect.soft(page.getByRole('heading', { name: '2h 30m' })).toBeVisible();
-//         await page.getByRole('tab', { name: 'Pending' }).click();
-//         await page.getByText('Pending').nth(1).click();
-//         await page.getByRole('heading', { name: '2h 30m' }).first().click();
-//         await page.getByText('activity description').first().click();
-//         await page.getByRole('button', { name: 'Organizations' }).click();
-//         await page.getByRole('button', { name: 'Verify Hours' }).first().click();
-//         //await page.getByRole('button', { name: 'Verify Hours' }).click();
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        //await page.getByText('Pending').nth(1).click();
+        await expect.soft(page.locator('p').filter({ hasText: 'Pending' })).toBeVisible();
+        //await page.getByText('activity decription').first().click();
+        await expect.soft(page.getByText('activity description')).toBeVisible();
+        //await page.getByRole('heading', { name: '2h 30m' }).first().click();
+        await expect.soft(page.getByRole('heading', { name: '2h 30m' })).toBeVisible();
+        await page.getByRole('tab', { name: 'Pending' }).click();
+        await page.getByText('Pending').nth(1).click();
+        await page.getByRole('heading', { name: '2h 30m' }).first().click();
+        await page.getByText('activity description').first().click();
+        await page.getByRole('button', { name: 'Organizations' }).click();
+        await page.getByRole('button', { name: 'Verify Hours' }).first().click();
+        //await page.getByRole('button', { name: 'Verify Hours' }).click();
 
-//         await page.getByText('pending').nth(1).click();
-//         await page.getByRole('table', { name: 'responsive table' }).getByRole('button').first().click();
+        await page.getByText('pending').nth(1).click();
+        await page.getByRole('table', { name: 'responsive table' }).getByRole('button').first().click();
 
-//         await page.getByRole('button', { name: 'Approve' }).click();
-//         //await page.getByRole('button', { name: 'Got it!' }).click();
-//         await page.getByRole('button', { name: 'Got it' }).click();
-//         await page.waitForTimeout(120000);
-//         await page.getByText('approved').first().click();
-//         //await page.getByRole('button', { name: 'Profile' }).click();
-//         await page.getByRole('button', { name: 'Profile', exact: true }).click();
-//         await page.getByText('Verified').first().click();
-//         await page.getByRole('tab', { name: 'Approved' }).click();
-//         await page.getByText('Verified').first().click();
+        await page.getByRole('button', { name: 'Approve' }).click();
+        //await page.getByRole('button', { name: 'Got it!' }).click();
+        await page.getByRole('button', { name: 'Got it' }).click();
+        await page.waitForTimeout(120000);
+        await page.getByText('approved').first().click();
+        //await page.getByRole('button', { name: 'Profile' }).click();
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByText('Verified').first().click();
+        await page.getByRole('tab', { name: 'Approved' }).click();
+        await page.getByText('Verified').first().click();
 
 
 
-//     })
+    })
 
-//     test('add hours with decline @skip', async ({ page }) => {
+    test('add hours with decline @skip', async ({ page }) => {
 
-//         await page.goto('https://next.gudppl.com');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
 
-//         await page.getByPlaceholder('Enter your email address').click();
-//         console.log('email ID Login for third test case is = ' + email)
-//         await page.getByPlaceholder('Enter your email address').fill(email);
-//         await page.getByPlaceholder('Enter your password').fill(pwd);
-//         await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.getByPlaceholder('Enter your email address').click();
+        console.log('email ID Login for third test case is = ' + email)
+        await page.getByPlaceholder('Enter your email address').fill(email);
+        await page.getByPlaceholder('Enter your password').fill(pwd);
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
 
-//         await page.waitForTimeout(1000);
+        await page.waitForTimeout(1000);
 
-//         await page.getByRole('button', { name: 'Add hours' }).click();
-//         await page.getByPlaceholder('Host organization name').click();
-//         await page.getByPlaceholder('Host organization name').fill(orgName);
-//         await page.getByRole('heading', { name: orgName }).click();
-//         await page.getByPlaceholder('Name of coordinator/supervisor').click();
-//         await page.getByPlaceholder('Name of coordinator/supervisor').fill('rajapaksha');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('17/09/2023');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('02');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
-//         await page.getByPlaceholder('DD/MM/YYYY').first().click();
-//         await page.getByPlaceholder('DD/MM/YYYY').first().fill('16/09/2023');
-//         await page.getByPlaceholder('DD/MM/YYYY').nth(1).click();
-//         await page.getByPlaceholder('DD/MM/YYYY').nth(1).fill('17/09/2023');
-//         for (let i = 0; i < 2; i++) {
-//             await page.locator('.MuiButtonGroup-root > button').first().click();
-//         }
+        await page.getByRole('button', { name: 'Add hours' }).click();
+        await page.getByPlaceholder('Host organization name').click();
+        await page.getByPlaceholder('Host organization name').fill(orgName);
+        await page.getByRole('heading', { name: orgName }).click();
+        await page.getByPlaceholder('Name of coordinator/supervisor').click();
+        await page.getByPlaceholder('Name of coordinator/supervisor').fill('rajapaksha');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('17/09/2023');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('02');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
+        await page.getByPlaceholder('DD/MM/YYYY').first().click();
+        await page.getByPlaceholder('DD/MM/YYYY').first().fill('16/09/2023');
+        await page.getByPlaceholder('DD/MM/YYYY').nth(1).click();
+        await page.getByPlaceholder('DD/MM/YYYY').nth(1).fill('17/09/2023');
+        for (let i = 0; i < 2; i++) {
+            await page.locator('.MuiButtonGroup-root > button').first().click();
+        }
         
-//         for (let i = 0; i < 6; i++) {
-//             await page.locator('div:nth-child(3) > .MuiFormControl-root > .MuiInputBase-root > .MuiButtonGroup-root > button').first().click();
-//         }
-//         await page.getByPlaceholder('Add description').click();
-//         await page.getByPlaceholder('Add description').fill('activity description')
-//         await page.getByLabel('Remote').check();
-//         await page.getByRole('button', { name: 'Animal welfare' }).click();
-//         await page.getByRole('button', { name: 'Zero Hunger' }).click();
-//         await page.getByRole('button', { name: 'No Poverty' }).click();
-//         await page.getByPlaceholder('Add skills and talents').click();
-//         await page.getByPlaceholder('Add skills and talents').fill('art ');
-//         await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
-//         //await page.getByLabel('Remote').check();
-//         //await page.getByPlaceholder('Add description').click();
-//         //await page.getByPlaceholder('Add description').fill('activity description')
-//         //await page.getByPlaceholder('Add skills and talents').click();
-//         //await page.getByPlaceholder('Add skills and talents').fill('art ');
-//         //await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
-//         //await page.getByRole('button', { name: 'Animal welfare' }).click();
-//         //await page.getByRole('button', { name: 'Zero Hunger' }).click();
-//         //await page.getByRole('button', { name: 'No Poverty' }).click();
-//         //await page.getByPlaceholder('Organization name').click();
-//         //await page.getByPlaceholder('Organization name').fill(orgName);
-//         //await page.getByRole('heading', { name: orgName }).click();
-//         //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
-//         //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
-//         //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
-//         await page.getByRole('button', { name: 'Submit' }).click();
-//         //await page.getByRole('button', { name: 'Got it!' }).click();
-//         await page.getByRole('button', { name: 'Got it' }).click();
-//         await page.waitForTimeout(120000);
+        for (let i = 0; i < 6; i++) {
+            await page.locator('div:nth-child(3) > .MuiFormControl-root > .MuiInputBase-root > .MuiButtonGroup-root > button').first().click();
+        }
+        await page.getByPlaceholder('Add description').click();
+        await page.getByPlaceholder('Add description').fill('activity description')
+        await page.getByLabel('Remote').check();
+        await page.getByRole('button', { name: 'Animal welfare' }).click();
+        await page.getByRole('button', { name: 'Zero Hunger' }).click();
+        await page.getByRole('button', { name: 'No Poverty' }).click();
+        await page.getByPlaceholder('Add skills and talents').click();
+        await page.getByPlaceholder('Add skills and talents').fill('art ');
+        await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
+        //await page.getByLabel('Remote').check();
+        //await page.getByPlaceholder('Add description').click();
+        //await page.getByPlaceholder('Add description').fill('activity description')
+        //await page.getByPlaceholder('Add skills and talents').click();
+        //await page.getByPlaceholder('Add skills and talents').fill('art ');
+        //await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
+        //await page.getByRole('button', { name: 'Animal welfare' }).click();
+        //await page.getByRole('button', { name: 'Zero Hunger' }).click();
+        //await page.getByRole('button', { name: 'No Poverty' }).click();
+        //await page.getByPlaceholder('Organization name').click();
+        //await page.getByPlaceholder('Organization name').fill(orgName);
+        //await page.getByRole('heading', { name: orgName }).click();
+        //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
+        //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
+        //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
+        await page.getByRole('button', { name: 'Submit' }).click();
+        //await page.getByRole('button', { name: 'Got it!' }).click();
+        await page.getByRole('button', { name: 'Got it' }).click();
+        await page.waitForTimeout(12000);
 
-//         await page.getByRole('button', { name: 'Organizations' }).click();
-//         await page.waitForTimeout(1000);
-//         await page.getByRole('table', { name: 'responsive table' }).getByText(orgName).click();
-//         await page.waitForTimeout(5000);
-//         await page.getByTestId('ChevronRightIcon').nth(1).click();           
-//         //await page.getByRole('cell', { name: 'pending' }).getByRole('button').click();
-//         await page.getByRole('table', { name: 'responsive table' }).getByRole('button').first().click();
+        await page.getByRole('button', { name: 'Organizations' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('table', { name: 'responsive table' }).getByText(orgName).click();
+        await page.waitForTimeout(5000);
+        await page.getByTestId('ChevronRightIcon').nth(1).click();           
+        //await page.getByRole('cell', { name: 'pending' }).getByRole('button').click();
+        await page.getByRole('table', { name: 'responsive table' }).getByRole('button').first().click();
       
   
-//         await page.getByRole('button', { name: 'Deny' }).click();
-//         await page.getByRole('textbox').click();
-//         await page.getByRole('textbox').fill('This is wrong');
-//         await page.getByRole('button', { name: 'Decline' }).click();
-//         await page.getByText('declined', { exact: true }).click();
-//         await page.waitForTimeout(3000);
-//         //await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2024 - 16/09/2024 declined' }).getByText('16/09/2024 - 16/09/2024').click();
-//         //await page.getByRole('row', { name: 'Monica Geller 2h 30m 16/09/2023 - 17/09/2023 Remote declined' }).getByRole('cell', { name: '16/09/2023 - 17/09/2023' }).click();
-//         await page.getByRole('button', { name: 'Profile' }).click();
-//         await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
-//         await page.getByText('16/09/2023 - 17/09/2023').first().click();
-//         await page.getByRole('tab', { name: 'Declined' }).click();
-//         await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
-//         //await page.getByText('16/09/2024 - 16/09/2024').click();
+        await page.getByRole('button', { name: 'Deny' }).click();
+        await page.getByRole('textbox').click();
+        await page.getByRole('textbox').fill('This is wrong');
+        await page.getByRole('button', { name: 'Decline' }).click();
+        await page.getByText('declined', { exact: true }).click();
+        await page.waitForTimeout(3000);
+        //await page.getByRole('row', { name: 'MG Monica Geller 2h 30m 16/09/2024 - 16/09/2024 declined' }).getByText('16/09/2024 - 16/09/2024').click();
+        //await page.getByRole('row', { name: 'Monica Geller 2h 30m 16/09/2023 - 17/09/2023 Remote declined' }).getByRole('cell', { name: '16/09/2023 - 17/09/2023' }).click();
+        await page.getByRole('button', { name: 'Profile' }).click();
+        await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
+        await page.getByText('16/09/2023 - 17/09/2023').first().click();
+        await page.getByRole('tab', { name: 'Declined' }).click();
+        await page.getByRole('paragraph').filter({ hasText: 'Declined' }).click();
+        //await page.getByText('16/09/2024 - 16/09/2024').click();
 
 
-//     })
+    })
 
-//     test('add hours with Amendments @skip', async ({ page }) => {
+    test('add hours with Amendments @', async ({ page }) => {
 
-//         await page.goto('https://next.gudppl.com');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
 
-//         await page.getByPlaceholder('Enter your email address').click();
-//         console.log('email ID Login for third test case is = ' + email)
-//         await page.getByPlaceholder('Enter your email address').fill(email);
-//         await page.getByPlaceholder('Enter your password').fill(pwd);
-//         await page.getByRole('button', { name: 'Continue', exact: true }).click();
+        await page.getByPlaceholder('Enter your email address').click();
+        console.log('email ID Login for third test case is = ' + email)
+        await page.getByPlaceholder('Enter your email address').fill(email);
+        await page.getByPlaceholder('Enter your password').fill(pwd);
+        await page.getByRole('button', { name: 'Continue', exact: true }).click();
 
-//         await page.waitForTimeout(1000);
+        await page.waitForTimeout(1000);
 
-//         await page.getByRole('button', { name: 'Add hours' }).click();
-//         await page.getByPlaceholder('Host organization name').click();
-//         await page.getByPlaceholder('Host organization name').fill(orgName);
-//         await page.getByRole('heading', { name: orgName }).click();
-//         await page.getByPlaceholder('Name of coordinator/supervisor').click();
-//         await page.getByPlaceholder('Name of coordinator/supervisor').fill('rajapaksha');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('17/09/2023');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('08');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');
-//         //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
-//         await page.getByPlaceholder('DD/MM/YYYY').first().click();
-//         await page.getByPlaceholder('DD/MM/YYYY').first().fill('16/09/2023');
-//         await page.getByPlaceholder('DD/MM/YYYY').nth(1).click();
-//         await page.getByPlaceholder('DD/MM/YYYY').nth(1).fill('17/09/2023');
-//         for (let i = 0; i < 8; i++) {
-//             await page.locator('.MuiButtonGroup-root > button').first().click();
-//         }
+        await page.getByRole('button', { name: 'Add hours' }).click();
+        await page.getByPlaceholder('Host organization name').click();
+        await page.getByPlaceholder('Host organization name').fill(orgName);
+        await page.getByRole('heading', { name: orgName }).click();
+        await page.getByPlaceholder('Name of coordinator/supervisor').click();
+        await page.getByPlaceholder('Name of coordinator/supervisor').fill('rajapaksha');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[1]/div[2]/div/input").fill('16/09/2023');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div/div/div[2]/div[2]/div/input").fill('17/09/2023');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[2]/div/div/input").fill('08');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[2]/div/div[3]/div/div/input").fill('30');
+        //await page.locator("//h4[normalize-space()='Add Hours']/../../../../div[3]/div[2]/div/div/div/form/div/div[3]/div/div[2]/div/div/textarea").first().fill('activity decription');
+        await page.getByPlaceholder('DD/MM/YYYY').first().click();
+        await page.getByPlaceholder('DD/MM/YYYY').first().fill('16/09/2023');
+        await page.getByPlaceholder('DD/MM/YYYY').nth(1).click();
+        await page.getByPlaceholder('DD/MM/YYYY').nth(1).fill('17/09/2023');
+        for (let i = 0; i < 8; i++) {
+            await page.locator('.MuiButtonGroup-root > button').first().click();
+        }
         
-//         for (let i = 0; i < 6; i++) {
-//             await page.locator('div:nth-child(3) > .MuiFormControl-root > .MuiInputBase-root > .MuiButtonGroup-root > button').first().click();
-//         }
-//         await page.getByPlaceholder('Add description').click();
-//         await page.getByPlaceholder('Add description').fill('activity description')
-//         await page.getByLabel('Remote').check();
-//         await page.getByRole('button', { name: 'Animal welfare' }).click();
-//         await page.getByRole('button', { name: 'Zero Hunger' }).click();
-//         await page.getByRole('button', { name: 'No Poverty' }).click();
-//         await page.getByPlaceholder('Add skills and talents').click();
-//         await page.getByPlaceholder('Add skills and talents').fill('art ');
-//         await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
+        for (let i = 0; i < 6; i++) {
+            await page.locator('div:nth-child(3) > .MuiFormControl-root > .MuiInputBase-root > .MuiButtonGroup-root > button').first().click();
+        }
+        await page.getByPlaceholder('Add description').click();
+        await page.getByPlaceholder('Add description').fill('activity description')
+        await page.getByLabel('Remote').check();
+        await page.getByRole('button', { name: 'Animal welfare' }).click();
+        await page.getByRole('button', { name: 'Zero Hunger' }).click();
+        await page.getByRole('button', { name: 'No Poverty' }).click();
+        await page.getByPlaceholder('Add skills and talents').click();
+        await page.getByPlaceholder('Add skills and talents').fill('art ');
+        await page.getByRole('option', { name: 'Art exhibitions and curation' }).click();
     
-//         //await page.getByPlaceholder('Organization name').click();
-//         //await page.getByPlaceholder('Organization name').fill(orgName);
-//         //await page.getByRole('heading', { name: orgName }).click();
-//         //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
-//         //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
-//         //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
-//         await page.getByRole('button', { name: 'Submit' }).click();
-//         //await page.getByRole('button', { name: 'Got it!' }).click();
-//         await page.getByRole('button', { name: 'Got it' }).click();
-//         await page.waitForTimeout(120000);
+        //await page.getByPlaceholder('Organization name').click();
+        //await page.getByPlaceholder('Organization name').fill(orgName);
+        //await page.getByRole('heading', { name: orgName }).click();
+        //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').click();
+        //await page.getByPlaceholder('Enter name of volunteer coordinator/supervisor').fill('rajapaksha');
+        //await page.getByRole('button', { name: 'Invite to verify hours' }).click();
+        await page.getByRole('button', { name: 'Submit' }).click();
+        //await page.getByRole('button', { name: 'Got it!' }).click();
+        await page.getByRole('button', { name: 'Got it' }).click();
+        await page.waitForTimeout(12000);
 
 
-//         await page.getByRole('button', { name: 'Organizations' }).click();
-//         await page.waitForTimeout(1000);
-//         await page.getByRole('table', { name: 'responsive table' }).getByText(orgName).click();
-//         await page.waitForTimeout(5000);
-//         await page.getByTestId('ChevronRightIcon').nth(1).click();        
-//         await page.getByRole('cell', { name: 'pending' }).getByRole('button').click();
-//         //await page.getByRole('table', { name: 'responsive table' }).getByRole('button').first().click();
+        await page.getByRole('button', { name: 'Organizations' }).click();
+        await page.waitForTimeout(1000);
+        await page.getByRole('table', { name: 'responsive table' }).getByText(orgName).click();
+        await page.waitForTimeout(5000);
+        await page.getByTestId('ChevronRightIcon').nth(1).click();        
+        await page.getByRole('cell', { name: 'pending' }).getByRole('button').click();
+        //await page.getByRole('table', { name: 'responsive table' }).getByRole('button').first().click();
       
 
-//         //await page.getByRole('button', { name: 'View request' }).click();
-//         //await page.getByText('pending', { exact: true }).click();
-//         //await page.getByRole('cell', { name: 'pending' }).getByRole('button').click();
-//         await page.getByRole('button', { name: 'Amend' }).click();
-//         // await page.locator('[id="\\:r4j\\:"]').click();
-//         // await page.locator('[id="\\:r4j\\:"]').fill('08');
-//         //await page.getByText('activity decription').fill('activity decription amendm');
-//         await page.getByPlaceholder('Add description').fill('activity description amendment');
-//         await page.getByRole('button', { name: 'Disaster relief' }).click();
-//         await page.getByRole('button', { name: 'Good Health and Well-being' }).click();
-//         //await page.getByLabel('Good Health and Well-being').click();
-//         await page.locator('textarea').nth(2).click();
-//         await page.locator('textarea').nth(2).fill('I just amended');
-//         //await page.getByPlaceholder('Enter reason to modify').click();
-//         //await page.getByPlaceholder('Enter reason to modify').fill('I just amended');
-//         await page.getByRole('button', { name: 'Amend & Approve' }).click();
-//         //await page.getByText('8h 30m').click();     
-//         // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2024 - 17/09/2024 Remote approved' }).getByText('approved').click();
-//         // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2024 - 17/09/2024 Remote approved' }).getByRole('button').click();
+        //await page.getByRole('button', { name: 'View request' }).click();
+        //await page.getByText('pending', { exact: true }).click();
+        //await page.getByRole('cell', { name: 'pending' }).getByRole('button').click();
+        await page.getByRole('button', { name: 'Amend' }).click();
+        // await page.locator('[id="\\:r4j\\:"]').click();
+        // await page.locator('[id="\\:r4j\\:"]').fill('08');
+        //await page.getByText('activity decription').fill('activity decription amendm');
+        await page.getByPlaceholder('Add description').fill('activity description amendment');
+        await page.getByRole('button', { name: 'Disaster relief' }).click();
+        await page.getByRole('button', { name: 'Good Health and Well-being' }).click();
+        //await page.getByLabel('Good Health and Well-being').click();
+        await page.locator('textarea').nth(2).click();
+        await page.locator('textarea').nth(2).fill('I just amended');
+        //await page.getByPlaceholder('Enter reason to modify').click();
+        //await page.getByPlaceholder('Enter reason to modify').fill('I just amended');
+        await page.getByRole('button', { name: 'Amend & Approve' }).click();
+        //await page.getByText('8h 30m').click();     
+        // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2024 - 17/09/2024 Remote approved' }).getByText('approved').click();
+        // await page.getByRole('row', { name: 'MG Monica Geller 8h 30m 16/09/2024 - 17/09/2024 Remote approved' }).getByRole('button').click();
 
-//         //await page.getByText('8h 30m').click();
-//         await page.getByRole('button', { name: 'Got it' }).click();
-//         //await page.getByText('Disaster relief').click();
-//         //await page.getByText('activity description amendment').click();
-//         await page.getByRole('button', { name: 'Profile', exact: true }).click();
-//         await page.getByText('Verified').first().click();
-//         await page.getByRole('tab', { name: 'Approved' }).click();
-//         await page.getByText('Verified').first().click();
+        //await page.getByText('8h 30m').click();
+        await page.getByRole('button', { name: 'Got it' }).click();
+        //await page.getByText('Disaster relief').click();
+        //await page.getByText('activity description amendment').click();
+        await page.getByRole('button', { name: 'Profile', exact: true }).click();
+        await page.getByText('Verified').first().click();
+        await page.getByRole('tab', { name: 'Approved' }).click();
+        await page.getByText('Verified').first().click();
 
 
 
-//     })
+    })
 
     test('User Profile  ', async ({ page }) => {
         //GUD-1443 bug is open
-        await page.goto('https://next.gudppl.com');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
         await page.waitForTimeout(3000);
 
         await page.getByPlaceholder('Enter your email address').click();
@@ -885,7 +886,7 @@ test.describe.serial('API Testing', () => {
 
     test('Edit organization ', async ({ page }) => {
 
-        await page.goto('https://next.gudppl.com');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
         // await page.pause();
 
         await page.getByPlaceholder('Enter your email address').click();
@@ -927,7 +928,7 @@ test.describe.serial('API Testing', () => {
         await page.getByPlaceholder('Select your country').fill('uni');
         await page.getByRole('option', { name: 'United States', exact: true }).click();
         // //await page.locator('.css-h14o9r-B').click();
-        await page.locator('#react-select-3-input').fill('castro');
+        await page.locator('#react-select-3-input').fill('cas');
         await page.getByText('Castro Valley', { exact: true }).click();
         await page.getByRole('button', { name: 'Disaster relief' }).click();
         await page.getByRole('button', { name: 'Animal welfare' }).click();
@@ -1100,7 +1101,7 @@ test.describe.serial('API Testing', () => {
 
     test('Impact Report ', async ({ page }) => {
 
-        await page.goto('https://next.gudppl.com');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
         await page.waitForTimeout(3000);
 
         await page.getByPlaceholder('Enter your email address').click();
@@ -1121,7 +1122,7 @@ test.describe.serial('API Testing', () => {
         //orgName = await fs.readFile('./pages/orgName.txt', 'utf8');
 
         // Login and Complete Profile Preferences
-        await page.goto('https://next.gudppl.com');
+        await page.goto('https://strong-druid-08a763.netlify.app/');
         await page.getByPlaceholder('Enter your email address').fill(email2);
         await page.getByPlaceholder('Enter your password').fill(pwd2);
         await page.getByRole('button', { name: 'Continue', exact: true }).click();
@@ -1186,7 +1187,7 @@ test.describe.serial('API Testing', () => {
         const page = await context.newPage();
 
         // Go to the authenticated page directly
-        await page.goto('https://next.gudppl.com'); // Adjust URL if needed
+        await page.goto('https://strong-druid-08a763.netlify.app/'); // Adjust URL if needed
         // Check if we are already logged in by verifying an element that appears only when logged in
         const isLoggedIn = await page.isVisible('text=Hello, Sadith. Welcome to gudppl!');
         if (!isLoggedIn) {
