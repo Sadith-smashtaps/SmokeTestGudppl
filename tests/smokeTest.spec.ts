@@ -1111,10 +1111,22 @@ await page.waitForTimeout(15000);
         await page.waitForTimeout(3400);
         await page.getByRole('button', { name: 'Profile', exact: true }).click();
         await page.getByRole('button', { name: 'Impact Report' }).click();
-        await page.waitForTimeout(1500);
-        await page.getByRole('button', { name: 'Copy link' }).click();
-        await expect.soft(page.getByText('Link copied to clipboard')).toBeVisible();
+        //await page.waitForTimeout(1500);
+        //await page.getByRole('button', { name: 'Copy link' }).click();
+        //await expect.soft(page.getByText('Link copied to clipboard')).toBeVisible();
+        //await page.waitForTimeout(10000);
+
+        // Replace fixed wait with explicit wait for "Copy link" button
+        const copyLinkButton = page.getByRole('button', { name: 'Copy link' });
+        await copyLinkButton.waitFor({ state: 'visible', timeout: 15000 }); // wait up to 15 seconds
+
+        await copyLinkButton.click();
+
+        // Increase timeout for the notification to appear
+        await expect.soft(page.getByText('Link copied to clipboard')).toBeVisible({ timeout: 15000 });
+
         await page.waitForTimeout(10000);
+
     })
 
     test('Login with new verified user, and join and leave the created organization- TC 940 @reg', async ({ page }) => {
