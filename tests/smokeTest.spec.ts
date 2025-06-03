@@ -59,8 +59,8 @@ test.describe.serial('API Testing', () => {
         const responseBody1 = JSON.parse(await response1.text())
         console.log(responseBody1.data.uuid)
         /////////////////////////////////////////////////////////////
-        await page.goto('https://strong-druid-08a763.netlify.app/');
-        await page.getByText('Create an account').click();
+        await page.goto('https://next.gudppl.com/signup');
+        //await page.getByText('Create an account').click();
         // await page.pause()
 
 
@@ -183,7 +183,7 @@ test.describe.serial('API Testing', () => {
 
     test('Login with verified user and complete profile preferences with all 7 steps GUD-TC-13  @reg', async ({ page }) => {
         //await test.setTimeout(50000);
-        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.goto('https://next.gudppl.com/');
         // await page.pause();        
 
         await page.getByPlaceholder('Enter your email address').click();
@@ -278,7 +278,7 @@ test.describe.serial('API Testing', () => {
     test('Create multiple organizations - GUD-TC-942 @skip', async ({ page }) => {
 
         // Login
-        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.goto('https://next.gudppl.com/');
         await page.getByPlaceholder('Enter your email address').click();
         console.log('email ID Login is = ' + email);
         await page.getByPlaceholder('Enter your email address').fill(email);
@@ -355,7 +355,7 @@ test.describe.serial('API Testing', () => {
 
     test('add hours and approve @skip', async ({ page }) => {
 
-        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.goto('https://next.gudppl.com/');
 
 
         await page.getByPlaceholder('Enter your email address').click();
@@ -475,7 +475,7 @@ await page.waitForTimeout(15000);
 
     test('add hours with decline @skip', async ({ page }) => {
 
-        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.goto('https://next.gudppl.com/');
 
         await page.getByPlaceholder('Enter your email address').click();
         console.log('email ID Login for third test case is = ' + email)
@@ -565,7 +565,7 @@ await page.waitForTimeout(15000);
 
     test('add hours with Amendments @', async ({ page }) => {
 
-        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.goto('https://next.gudppl.com/');
 
         await page.getByPlaceholder('Enter your email address').click();
         console.log('email ID Login for third test case is = ' + email)
@@ -663,7 +663,7 @@ await page.waitForTimeout(15000);
 
     test('User Profile  ', async ({ page }) => {
         //GUD-1443 bug is open
-        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.goto('https://next.gudppl.com/');
         await page.waitForTimeout(3000);
 
         await page.getByPlaceholder('Enter your email address').click();
@@ -886,7 +886,7 @@ await page.waitForTimeout(15000);
 
     test('Edit organization ', async ({ page }) => {
 
-        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.goto('https://next.gudppl.com/');
         // await page.pause();
 
         await page.getByPlaceholder('Enter your email address').click();
@@ -1101,7 +1101,7 @@ await page.waitForTimeout(15000);
 
     test('Impact Report ', async ({ page }) => {
 
-        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.goto('https://next.gudppl.com/');
         await page.waitForTimeout(3000);
 
         await page.getByPlaceholder('Enter your email address').click();
@@ -1122,7 +1122,7 @@ await page.waitForTimeout(15000);
         //orgName = await fs.readFile('./pages/orgName.txt', 'utf8');
 
         // Login and Complete Profile Preferences
-        await page.goto('https://strong-druid-08a763.netlify.app/');
+        await page.goto('https://next.gudppl.com/');
         await page.getByPlaceholder('Enter your email address').fill(email2);
         await page.getByPlaceholder('Enter your password').fill(pwd2);
         await page.getByRole('button', { name: 'Continue', exact: true }).click();
@@ -1187,7 +1187,7 @@ await page.waitForTimeout(15000);
         const page = await context.newPage();
 
         // Go to the authenticated page directly
-        await page.goto('https://strong-druid-08a763.netlify.app/'); // Adjust URL if needed
+        await page.goto('https://next.gudppl.com/'); // Adjust URL if needed
         // Check if we are already logged in by verifying an element that appears only when logged in
         const isLoggedIn = await page.isVisible('text=Hello, Sadith. Welcome to gudppl!');
         if (!isLoggedIn) {
