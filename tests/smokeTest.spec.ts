@@ -928,7 +928,7 @@ await page.waitForTimeout(15000);
         await page.getByPlaceholder('Select your country').fill('uni');
         await page.getByRole('option', { name: 'United States', exact: true }).click();
         // //await page.locator('.css-h14o9r-B').click();
-        await page.locator('#react-select-3-input').fill('cas');
+        await page.locator('#react-select-3-input').fill('castro');
         await page.getByText('Castro Valley', { exact: true }).click();
         await page.getByRole('button', { name: 'Disaster relief' }).click();
         await page.getByRole('button', { name: 'Animal welfare' }).click();
