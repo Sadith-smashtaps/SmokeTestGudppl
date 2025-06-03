@@ -1114,7 +1114,7 @@ await page.waitForTimeout(15000);
         await page.waitForTimeout(1500);
         await page.getByRole('button', { name: 'Copy link' }).click();
         await expect.soft(page.getByText('Link copied to clipboard')).toBeVisible();
-        await page.waitForTimeout(1500);
+        await page.waitForTimeout(10000);
     })
 
     test('Login with new verified user, and join and leave the created organization- TC 940 @reg', async ({ page }) => {
