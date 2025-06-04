@@ -6,13 +6,13 @@ const { defineConfig, devices } = require('@playwright/test');
  * https://github.com/motdotla/dotenv
  */
 // require('dotenv').config();
-export default defineConfig({
+/*export default defineConfig({
   use: {
     headless: false, // <--- Set to false for headed mode
     // ...other options
   },
   // ...other config
-});
+});*/
 
 /**
  * @see https://playwright.dev/docs/test-configuration

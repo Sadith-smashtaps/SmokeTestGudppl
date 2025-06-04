@@ -33,6 +33,17 @@ jobs:
       run: |
         echo "TZ=Asia/Kolkata" >> $GITHUB_ENV
 
+    ############################################################
+    # 🟢 Install and Start Xvfb for headful browser support
+    ############################################################
+    - name: Install Xvfb
+      run: sudo apt-get install xvfb
+
+    - name: Start Xvfb
+      run: |
+        Xvfb :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+        echo "DISPLAY=:99" >> $GITHUB_ENV
+
     - name: Run Playwright tests
       run: npx playwright test smokeTest.spec.ts --project=Chromium --workers 1
 
