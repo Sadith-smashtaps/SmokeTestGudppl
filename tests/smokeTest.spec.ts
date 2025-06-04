@@ -1125,7 +1125,7 @@ await page.waitForTimeout(15000);
         // Increase timeout for the notification to appear
         await expect.soft(page.getByText('Link copied to clipboard')).toBeVisible({ timeout: 60000 });
 
-        await page.waitForTimeout(10000);
+        //await page.waitForTimeout(10000);
 
     })
 
