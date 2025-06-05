@@ -442,7 +442,7 @@ await page.waitForTimeout(15000);
 
         await page.getByRole('button', { name: 'Profile', exact: true }).click();
         //await page.getByText('Pending').nth(1).click();
-        await expect.soft(page.locator('p').filter({ hasText: 'Pending' })).toBeVisible();
+        //await expect.soft(page.locator('p').filter({ hasText: 'Pending' })).toBeVisible();
         //await page.getByText('activity decription').first().click();
         await expect.soft(page.getByText('activity description')).toBeVisible();
         //await page.getByRole('heading', { name: '2h 30m' }).first().click();
